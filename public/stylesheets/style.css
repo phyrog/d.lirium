@@ -1,0 +1,652 @@
+*,
+html {
+  margin: 0;
+  padding: 0;
+  cursor: default;
+}
+html {
+  background-color: #1c1c1c;
+}
+a {
+  cursor: pointer;
+  color: #ff8700;
+  text-decoration: none;
+}
+section > code {
+  display: block;
+  margin-left: -4em;
+  margin-right: -4em;
+  margin-bottom: 1em;
+  font-family: "Source Code Pro";
+  counter-reset: loc;
+  border-left: 3em solid #161616;
+  border-right: 3em solid #161616;
+  background-color: #141414;
+}
+section > code > span {
+  display: block;
+  position: relative;
+  margin-left: 2em;
+  text-indent: -1.8em;
+  color: #d0d0d0;
+  cursor: text;
+  white-space: pre-wrap;
+}
+section > code > span:first-of-type {
+  padding-top: 0.5em;
+}
+section > code > span:first-of-type:before,
+section > code > span:first-of-type:after {
+  padding-top: 0.5em;
+  margin-top: -0.5em;
+}
+section > code > span:last-of-type {
+  padding-bottom: 0.5em;
+}
+section > code > span:last-of-type:before,
+section > code > span:last-of-type:after {
+  padding-bottom: 0.5em;
+  margin-bottom: -0.5em;
+}
+section > code > span:before {
+  display: block;
+  position: absolute;
+  width: 3em;
+  left: -5em;
+  padding-right: 0.5em;
+  text-align: right;
+  color: #bcbcbc;
+  counter-increment: loc;
+  content: counter(loc);
+}
+section > code > span > * {
+  color: #d0d0d0;
+  cursor: text;
+  white-space: pre-wrap;
+}
+section > code > span > span.highlighting.dType,
+section > code > span > span.highlighting.dStructure,
+section > code > span > span.highlighting.dEnum {
+  color: #66D9EF;
+}
+section > code > span > span.highlighting.dOperator {
+  color: #F92672;
+}
+section > code > span > span.highlighting.dRepeat,
+section > code > span > span.highlighting.dStatement,
+section > code > span > span.highlighting.dConditional,
+section > code > span > span.highlighting.dBranch {
+  color: #F92672;
+  font-weight: bold;
+}
+section > code > span > span.highlighting.dBoolean {
+  color: #AE81FF;
+}
+section > code > span > span.highlighting.dStorageClass,
+section > code > span > span.highlighting.dAttribute,
+section > code > span > span.highlighting.dScope {
+  color: #FD971F;
+  font-style: italic;
+}
+section > p > code {
+  font-family: "Source Code Pro";
+  whitespace: pre-wrap;
+  padding: 0 1em 0 1em;
+}
+blockquote {
+  display: block;
+  width: 100%;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  box-sizing: border-box;
+  margin-left: 0em;
+  margin-bottom: 1em;
+  border-left: 1.5em solid #141414;
+  padding-left: 0.5em;
+}
+blockquote > p {
+  margin-bottom: 1em;
+  font-style: italic;
+}
+body {
+  position: relative;
+  width: 50%;
+  left: 25%;
+}
+body * {
+  color: #dadada;
+}
+body > h1 {
+  padding: 1em;
+  padding-left: 0.8em;
+  text-transform: lowercase;
+  font-family: "Source Code Pro";
+}
+body > h1:before {
+  color: #ff8700;
+  content: "::";
+}
+body > a {
+  display: inline-block;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  font-family: "Source Code Pro";
+  text-transform: uppercase;
+}
+body > a:before {
+  color: #ff8700;
+  content: ">";
+  margin-right: 0.5em;
+}
+body > aside.admin {
+  position: fixed;
+  right: -5.8em;
+  padding: 0.5em;
+  font-family: "Source Code Pro";
+  background-color: #121212;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  -webkit-transition: all 0.5s;
+}
+body > aside.admin:hover {
+  right: 0em;
+}
+body > aside.admin:before {
+  display: block;
+  position: absolute;
+  top: -1.5em;
+  right: -0.5em;
+  border-right: 0.5em solid #121212;
+  border-bottom: 0.5em solid #121212;
+  height: 1.5em;
+  width: 1.5em;
+  content: "\a0";
+  border-bottom-right-radius: 1.5em;
+}
+body > aside.admin:after {
+  display: block;
+  position: absolute;
+  bottom: -1.5em;
+  right: -0.5em;
+  border-right: 0.5em solid #121212;
+  border-top: 0.5em solid #121212;
+  height: 1.5em;
+  width: 1.5em;
+  content: "\a0";
+  border-top-right-radius: 1.5em;
+}
+body > aside.admin a {
+  display: block;
+  height: 1em;
+  width: 5.5em;
+  color: #dadada;
+  font-weight: bold;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: #1c1c1c;
+  border-radius: 0.25em;
+  border: 2px solid #0c0c0c;
+  text-transform: lowercase;
+}
+body > aside.admin a:last-of-type {
+  margin-bottom: 0;
+}
+body > aside.admin a:first-letter {
+  color: #ff8700;
+  letter-spacing: 0.2em;
+}
+body > aside.admin a:hover {
+  background-color: #292929;
+}
+body > nav {
+  position: absolute;
+  width: 10em;
+  left: -10em;
+  text-align: right;
+}
+body > nav li {
+  display: block;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  text-transform: lowercase;
+  font-family: "Source Code Pro";
+  font-weight: bold;
+}
+body > nav li a {
+  display: block;
+}
+body > nav li a:after {
+  margin-left: 0.2em;
+  color: #ff8700;
+  content: ">";
+}
+body > nav li a.active:after,
+body > nav li a:hover:after {
+  margin-left: 0.5em;
+  margin-right: -0.3em;
+}
+body > nav li li {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+body > nav li li a {
+  color: #bcbcbc;
+  font-size: 11pt;
+}
+body > nav li li a:after {
+  content: "<";
+  color: #995100;
+  margin-left: 0.2em;
+  margin-right: -0.5em;
+}
+body > nav li li a.active:after,
+body > nav li li a:hover:after {
+  margin-left: 0;
+  margin-right: -0.3em;
+}
+body > article {
+  position: relative;
+  padding: 1em;
+  margin-bottom: 3em;
+  background-color: #121212;
+}
+body > article:last-of-type {
+  margin-bottom: 1em;
+}
+body > article.overlay {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  top: 9.5em;
+  z-index: 98;
+}
+body > article > header > nav {
+  opacity: 0.85;
+  z-index: 99;
+  position: fixed;
+  top: 0em;
+  left: 50%;
+  margin-left: -5em;
+  width: 10em;
+  padding: 0.5em;
+  font-family: "Source Code Pro";
+  background-color: #0d0d0d;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-top: none;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  -webkit-transition: all 0.5s;
+}
+body > article > header > nav:hover {
+  border: 2px solid rgba(255, 255, 255, 0) !important;
+  border-top: none !important;
+  top: 0 !important;
+  opacity: 1;
+}
+body > article > header > nav:before {
+  display: block;
+  position: absolute;
+  top: -0.5em;
+  left: -1.5em;
+  border-right: 0.5em solid #0d0d0d;
+  border-top: 0.5em solid #0d0d0d;
+  height: 1.5em;
+  width: 1.5em;
+  content: "\a0";
+  border-top-right-radius: 1.5em;
+}
+body > article > header > nav:after {
+  display: block;
+  position: absolute;
+  top: -0.5em;
+  right: -1.5em;
+  border-left: 0.5em solid #0d0d0d;
+  border-top: 0.5em solid #0d0d0d;
+  height: 1.5em;
+  width: 1.5em;
+  content: "\a0";
+  border-top-left-radius: 1.5em;
+}
+body > article > header > nav li {
+  list-style-type: none;
+  display: inline-block;
+}
+body > article > header > nav li a {
+  color: #ff8700;
+  display: block;
+  width: 3.75em;
+  font-weight: bold;
+  padding: 0.5em;
+  background-color: #1c1c1c;
+  border-radius: 0.25em;
+  border: 2px solid #0c0c0c;
+  text-transform: lowercase;
+  text-align: center;
+}
+body > article > header > nav li a:hover {
+  background-color: #292929;
+}
+body > article > header > nav li:first-of-type a {
+  border-right: none;
+  border-bottom-right-radius: 0em;
+  border-top-right-radius: 0em;
+}
+body > article > header > nav li:last-of-type a {
+  border-bottom-left-radius: 0em;
+  border-top-left-radius: 0em;
+}
+body > article > header > h1 {
+  font-family: "URW Gothic L";
+  font-weight: normal;
+}
+body > article > header > h1 > a:hover {
+  color: #a7a7a7;
+}
+body > article > header > h1:focus {
+  outline: none;
+}
+body > article > header > h1:after {
+  margin-right: 0.2em;
+  font-family: "Source Code Pro";
+  color: #465457;
+  content: " : public";
+}
+body > article > header > aside:first-of-type {
+  position: absolute;
+  margin-left: 0.5em;
+  left: 100%;
+  top: 2em;
+  font-family: "Source Code Pro";
+  font-weight: bold;
+}
+body > article > header > aside:first-of-type > time {
+  display: block;
+  font-size: 1.5em;
+}
+body > article > header > aside:first-of-type > time span {
+  display: block;
+  font-size: 0.7em;
+}
+body > article > header > aside:first-of-type > a {
+  display: inline-block;
+}
+body > article > header > aside:first-of-type > a:before {
+  margin-right: 0.2em;
+  font-family: "Source Code Pro";
+  color: #465457;
+}
+body > article > header > aside:first-of-type > a[rel=author] {
+  display: block;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  color: #ff8700;
+}
+body > article > header > aside:first-of-type > a[rel=author]:before {
+  display: block;
+  margin-left: -0.5em;
+  content: "#author:";
+}
+body > article > header > aside:first-of-type > ul {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  list-style-type: none;
+}
+body > article > header > aside:first-of-type > ul:before {
+  margin-right: 0.2em;
+  font-family: "Source Code Pro";
+  color: #465457;
+  content: "#tags:[";
+}
+body > article > header > aside:first-of-type > ul:after {
+  margin-right: 0.2em;
+  font-family: "Source Code Pro";
+  color: #465457;
+  content: "]";
+}
+body > article > header > aside:first-of-type > ul#diffs a {
+  text-transform: lowercase;
+}
+body > article > header > aside:first-of-type > ul#diffs a.current {
+  color: #ff8700;
+}
+body > article > header > aside:first-of-type > ul#diffs:before {
+  content: "#revs:[";
+}
+body > article > header > aside:first-of-type > ul li a[rel=tag] {
+  display: block;
+  margin-left: 0.5em;
+  text-transform: lowercase;
+}
+body > article > header > aside:first-of-type > ul li a[rel=tag].edit:hover {
+  text-decoration: line-through;
+}
+body > article > header > aside:first-of-type > ul li a[rel=tag]:before {
+  color: #ff8700;
+  content: "*";
+}
+body > article > header > aside:first-of-type > ul li a[rel=tag]:after {
+  margin-right: 0.2em;
+  font-family: "Source Code Pro";
+  color: #465457;
+  content: ",";
+}
+body > article > header > aside:first-of-type > ul li span {
+  display: block;
+  margin-left: 0.5em;
+  text-transform: lowercase;
+  height: 1.5em;
+  min-width: 5em;
+  max-width: 10em;
+  white-space: nowrap;
+  background-color: #1c1c1c;
+  border-bottom: 1px solid #465457;
+  border-radius: 0.2em;
+}
+body > article > header > aside:first-of-type > ul li span:focus {
+  outline: none;
+}
+body > article > header > aside:first-of-type > ul li span:before {
+  display: inline-block;
+  color: #ff8700;
+  content: "*";
+}
+body > article > header > aside:first-of-type > ul li:last-of-type a[rel=tag]:after {
+  content: "";
+}
+body > article > textarea {
+  display: block;
+  position: relative;
+  left: -3em;
+  box-sizing: border-box;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  width: 100%;
+  max-width: 100%;
+  min-height: 30em;
+  background-color: #121212;
+  overflow: visible;
+  white-space: word-wrap;
+  border: none;
+}
+body > article > section,
+body > article > textarea {
+  display: block;
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-top: 1.5em;
+  font-family: "Cantarell";
+  font-size: 13pt;
+  counter-reset: h2;
+}
+body > article > section > p,
+body > article > textarea > p {
+  margin-bottom: 1em;
+  text-align: justify;
+}
+body > article > section > h2:after,
+body > article > textarea > h2:after,
+body > article > section > h3:after,
+body > article > textarea > h3:after,
+body > article > section > h4:after,
+body > article > textarea > h4:after,
+body > article > section > h5:after,
+body > article > textarea > h5:after {
+  display: inline-block;
+  width: 60px;
+  position: absolute;
+  right: 10px;
+  text-align: right;
+}
+body > article > section > h2 > a,
+body > article > textarea > h2 > a,
+body > article > section > h3 > a,
+body > article > textarea > h3 > a,
+body > article > section > h4 > a,
+body > article > textarea > h4 > a,
+body > article > section > h5 > a,
+body > article > textarea > h5 > a {
+  color: #dadada;
+}
+body > article > section > h2 > a:before,
+body > article > textarea > h2 > a:before,
+body > article > section > h3 > a:before,
+body > article > textarea > h3 > a:before,
+body > article > section > h4 > a:before,
+body > article > textarea > h4 > a:before,
+body > article > section > h5 > a:before,
+body > article > textarea > h5 > a:before {
+  display: inline-block;
+  width: 60px;
+  position: absolute;
+  left: 0;
+  text-align: right;
+  color: #465457;
+}
+body > article > section > h2 > a:hover,
+body > article > textarea > h2 > a:hover,
+body > article > section > h3 > a:hover,
+body > article > textarea > h3 > a:hover,
+body > article > section > h4 > a:hover,
+body > article > textarea > h4 > a:hover,
+body > article > section > h5 > a:hover,
+body > article > textarea > h5 > a:hover {
+  text-decoration: none;
+}
+body > article > section > h2 > a:hover:before,
+body > article > textarea > h2 > a:hover:before,
+body > article > section > h3 > a:hover:before,
+body > article > textarea > h3 > a:hover:before,
+body > article > section > h4 > a:hover:before,
+body > article > textarea > h4 > a:hover:before,
+body > article > section > h5 > a:hover:before,
+body > article > textarea > h5 > a:hover:before {
+  color: #ff8700;
+}
+body > article > section > h2:after,
+body > article > textarea > h2:after {
+  content: " " counter(h2);
+}
+body > article > section > h2 > a:before,
+body > article > textarea > h2 > a:before {
+  content: "#";
+}
+body > article > section > h2,
+body > article > textarea > h2 {
+  counter-increment: h2 1;
+  counter-reset: h3;
+  counter-reset: h4;
+  counter-reset: h5;
+}
+body > article > section > h3:after,
+body > article > textarea > h3:after {
+  content: " " counter(h2) "." counter(h3);
+}
+body > article > section > h3 > a:before,
+body > article > textarea > h3 > a:before {
+  content: "##";
+}
+body > article > section > h3,
+body > article > textarea > h3 {
+  counter-increment: h3 1;
+  counter-reset: h4;
+  counter-reset: h5;
+}
+body > article > section > h4:after,
+body > article > textarea > h4:after {
+  content: " " counter(h2) "." counter(h3) "." counter(h4);
+}
+body > article > section > h4 > a:before,
+body > article > textarea > h4 > a:before {
+  content: "###";
+}
+body > article > section > h4,
+body > article > textarea > h4 {
+  counter-increment: h4 1;
+  counter-reset: h5;
+}
+body > article > section > h5:after,
+body > article > textarea > h5:after {
+  content: " " counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
+}
+body > article > section > h5 > a:before,
+body > article > textarea > h5 > a:before {
+  content: "####";
+}
+body > article > section > h5,
+body > article > textarea > h5 {
+  counter-increment: h5 1;
+}
+body > article > section form,
+body > article > textarea form {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  vertical-align: top;
+  padding: 1em;
+}
+body > article > section form:last-of-type,
+body > article > textarea form:last-of-type {
+  border-left: none;
+}
+body > article > section form input,
+body > article > textarea form input {
+  display: block;
+  box-sizing: border-box;
+  background-color: #1c1c1c;
+  border: 2px solid #0c0c0c;
+  margin: auto;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  width: 100%;
+  color: #dadada;
+}
+body > article > section form input[type=submit],
+body > article > textarea form input[type=submit] {
+  padding: 1em;
+}
+body > article > section form input:last-of-type,
+body > article > textarea form input:last-of-type {
+  margin-bottom: 0;
+}
+body > article > section a,
+body > article > textarea a {
+  color: #ff8700;
+}
+body > article > section a:hover,
+body > article > textarea a:hover {
+  text-decoration: underline;
+}
+body > article > section.edit,
+body > article > textarea.edit {
+  font-family: "Source Code Pro";
+  font-weight: normal;
+  white-space: pre;
+}
+body > article > section.edit:focus,
+body > article > textarea.edit:focus {
+  outline: none;
+}
+body > article.unpub > header > h1:after {
+  content: " : private";
+}

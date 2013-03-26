@@ -1,0 +1,10 @@
+{
+    "name": "d.lirium",
+    "description": "A personal blog software",
+    "authors": [
+        "Tom Gehrke"
+    ],
+    "dependencies": {
+    	"vibe-d": ">=0.7.12"
+    }
+}

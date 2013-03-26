@@ -1,0 +1,44 @@
+!!! 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(type='text/javascript', src='/scripts/jquery-1.8.3.min.js')
+		script(type='text/javascript')
+			$(function() {
+				$(window).scroll(function() {
+					if(window.pageYOffset > 100) {
+						$("article > header > nav").css("top", "-2.25em").css("border", "2px solid rgba(255, 255, 255, 0.2)").css("border-top", "none");
+					}
+					else {
+						$("article > header > nav").css("top", "0").css("border", "2px solid rgba(255, 255, 255, 0)").css("border-top", "none");
+					}
+				});
+			});
+	body
+		h1= title
+		nav
+			ul
+				li
+					a.active(href="/") Home
+				li
+					a(href="/blog/tag/code") Code
+					ul
+						li
+							a(href="/blog/tag/c++") C++
+						li
+							a(href="/blog/tag/d") D
+						li
+							a(href="/blog/tag/java") Java
+				li
+					a(href="/blog/tag/life") Life
+				li
+					a(href="/aboutme") About me
+		block content
+		a(href="http://vibed.org/templates/diet") Diet
+		a(href="http://lesscss.org") LESS
+		a(href="http://vibed.org") vibe.d
+		a(href="http://mongodb.org") MongoDB
+		a(href="http://redis.io") redis
+		a(href="#") Impressum
+		a(href="/login") Login
