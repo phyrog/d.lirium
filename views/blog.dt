@@ -5,11 +5,12 @@ block content
 		header
 			aside
 				time
-					span
-				a(href="/user/#{article.author}", rel="author")= article.author
+					- string date = req.params["day"] ~ "." ~ req.params["month"] ~ ".";
+					span= date
+					| #{req.params["year"]}
 				ul
 					- foreach(tag; article.tags)
 						li
-							a(href="/blog/tag/#{tag}", rel="tag")= tag
+							a(href="/tag/#{tag}", rel="tag")= tag
 			h1= article.title
 		section!= article.text

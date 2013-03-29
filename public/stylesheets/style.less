@@ -40,6 +40,7 @@ section > code {
 		margin-left: 2em;
 		text-indent: -1.8em;
 		color: @tertiaryFontColor;
+		font-size: 0.8em;
 		cursor: text;
 		white-space: pre-wrap;
 
@@ -63,8 +64,7 @@ section > code {
 			display: block;
 			position: absolute;
 			width: 3em;
-			left: -5em;
-			padding-right: 0.5em;
+			left: -5.2em;
 			text-align: right;
 			color: @darkTertiaryFontColor;
 			counter-increment: loc;
@@ -78,7 +78,7 @@ section > code {
 		}
 
 		& > span.highlighting {
-			&.dType, &.dStructure, &.dEnum {
+			&.dType, &.dStructure, &.dEnum, &.dExternal {
 				color: #66D9EF;
 			}
 			&.dOperator {
@@ -91,9 +91,19 @@ section > code {
 			&.dBoolean {
 				color: #AE81FF;
 			}
-			&.dStorageClass, &.dAttribute, &.dScope {
+			&.dIdentifier, &.dOpOverload, &.dVersionIdentifier,
+			&.dScopeIdentifier, &.dTraitsIdentifier, &.dExternIdentifier {
+				color: #FD971F;
+			}
+			&.dStorageClass, &.dAttribute, &.dScope, &.dScopeDecl {
 				color: #FD971F;
 				font-style: italic;
+			}
+			&.dString {
+				color: #AFAF87;
+			}
+			&.dNumber {
+				color: #AE81FF;
 			}
 		}
 	}
@@ -644,6 +654,15 @@ body {
 			}
 			& > h5 {
 				counter-increment: h5 1;
+			}
+
+			& > ul {
+				padding: 0.5em;
+				list-style-type: square;
+				& > li {
+					padding: 0.3em;
+					color: @tertiaryFontColor;
+				}
 			}
 
 			form {

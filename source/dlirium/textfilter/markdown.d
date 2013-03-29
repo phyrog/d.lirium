@@ -348,25 +348,19 @@ private string[] skipText(ref Line[] lines, IndentType[] indent)
 
 string[] getTokens(string line)
 {
-	string[] tmp = array(std.regex.split(line, regex("[ .,:;'+*~=?!&/\"\t(\\[{}\\])]")));
+	string[] tmp = array(std.regex.split(line, regex("[ \\\\.,:;'+*~=?!&/\"\t(\\[{}\\])]")));
 	string[] res;
-	ulong i = 0;
-	ulong t = 0;
-	for(ulong e = tmp[t].length; t < tmp.length; )
+	ulong c = 0;
+	ulong tok = 0;
+	for(ulong end = c; end <= line.length && tok < tmp.length; )
 	{
-		if(i != e)
-			res ~= line[i .. e];
-		if(t < tmp.length-1)
-			res ~= ""~line[e];
-		e++;
-		i = e;
-		t++;
-		if(t < tmp.length)
-		{
-			e += tmp[t].length;
-		}
+		end = c + tmp[tok].length;
+		if(c > 0) res ~= ""~line[c-1];
+		res ~= line[c .. end];
+		tok++;
+		c = end+1;
 	}
-	return res;
+	return array(res.filter!(a => a.length > 0)());
 }
 
 /+
@@ -451,10 +445,18 @@ private void writeBlock(R)(ref R dst, ref const Block block, LinkRef[string] lin
 		case BlockType.Code:
 			assert(block.blocks.length == 0);
 			dst.put("<code>\n");
+			bool isString = false;
+			bool isChar = false;
 			foreach(ln; block.text){
 				dst.put("<span>");
-				foreach(token; ln.getTokens()){
+				string[] tokens = ln.getTokens();
+				if(tokens.length == 0) dst.put("&nbsp;");
+				foreach(i, token; tokens){
+					// TODO: differentiate between " and '
+					if(!isChar && token == "\"" && (i == 0 || (i > 0 && tokens[i-1] != "\\"))) isString = !isString;
+					if(!isString && token == "\'" && (i == 0 || (i > 0 && tokens[i-1] != "\\"))) isChar = !isChar;
 					Tuple!(string, string) tags = getTagsForToken(token);
+					if(isString || isChar) tags = getTagsForToken("\"");
 					dst.put(tags[0]);
 					filterHtmlEscape(dst, token);
 					dst.put(tags[1]);

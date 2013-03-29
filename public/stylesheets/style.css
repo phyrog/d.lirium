@@ -29,6 +29,7 @@ section > code > span {
   margin-left: 2em;
   text-indent: -1.8em;
   color: #d0d0d0;
+  font-size: 0.8em;
   cursor: text;
   white-space: pre-wrap;
 }
@@ -52,8 +53,7 @@ section > code > span:before {
   display: block;
   position: absolute;
   width: 3em;
-  left: -5em;
-  padding-right: 0.5em;
+  left: -5.2em;
   text-align: right;
   color: #bcbcbc;
   counter-increment: loc;
@@ -66,7 +66,8 @@ section > code > span > * {
 }
 section > code > span > span.highlighting.dType,
 section > code > span > span.highlighting.dStructure,
-section > code > span > span.highlighting.dEnum {
+section > code > span > span.highlighting.dEnum,
+section > code > span > span.highlighting.dExternal {
   color: #66D9EF;
 }
 section > code > span > span.highlighting.dOperator {
@@ -82,11 +83,26 @@ section > code > span > span.highlighting.dBranch {
 section > code > span > span.highlighting.dBoolean {
   color: #AE81FF;
 }
+section > code > span > span.highlighting.dIdentifier,
+section > code > span > span.highlighting.dOpOverload,
+section > code > span > span.highlighting.dVersionIdentifier,
+section > code > span > span.highlighting.dScopeIdentifier,
+section > code > span > span.highlighting.dTraitsIdentifier,
+section > code > span > span.highlighting.dExternIdentifier {
+  color: #FD971F;
+}
 section > code > span > span.highlighting.dStorageClass,
 section > code > span > span.highlighting.dAttribute,
-section > code > span > span.highlighting.dScope {
+section > code > span > span.highlighting.dScope,
+section > code > span > span.highlighting.dScopeDecl {
   color: #FD971F;
   font-style: italic;
+}
+section > code > span > span.highlighting.dString {
+  color: #AFAF87;
+}
+section > code > span > span.highlighting.dNumber {
+  color: #AE81FF;
 }
 section > p > code {
   font-family: "Source Code Pro";
@@ -596,6 +612,16 @@ body > article > textarea > h5 > a:before {
 body > article > section > h5,
 body > article > textarea > h5 {
   counter-increment: h5 1;
+}
+body > article > section > ul,
+body > article > textarea > ul {
+  padding: 0.5em;
+  list-style-type: square;
+}
+body > article > section > ul > li,
+body > article > textarea > ul > li {
+  padding: 0.3em;
+  color: #d0d0d0;
 }
 body > article > section form,
 body > article > textarea form {

@@ -1,7 +1,12 @@
 module dlirium.textfilter.syntax_d;
 
+import std.regex;
+
 string getKeywordForToken_D(string token)
 {
+	if(token.match("[0-9]+(L|u|U|Lu|LU|uL|UL)*"))
+		return "dNumber";
+
 	switch(token)
 	{
 		case "import":
@@ -332,6 +337,9 @@ string getKeywordForToken_D(string token)
 		case "none":
 		case "all":
 			return "dVersionIdentifier";
+		case "\"":
+		case "'":
+			return "dString";
 		default:
 			return "";
 	}

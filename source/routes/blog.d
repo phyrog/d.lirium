@@ -5,49 +5,73 @@ import vibe.http.server;
 
 import dlirium.conf;
 import dlirium.data;
+import dlirium.parser;
+
+import std.file;
+import std.datetime;
+import std.conv;
+import std.array : split;
 
 void index(HttpServerRequest req, HttpServerResponse res)
 {
-	req.params["year"] = "2013";
-	req.params["month"] = "03";
-	req.params["day"] = "20";
-	req.params["url"] = "hallo";
+	string path = "articles/";
+	
+	int year = Clock.currTime().year;
+	string yrString = ("0000" ~ to!string(year))[$-4..$];
+	while(!isDir(path ~ yrString)) { --year; yrString = ("0000" ~ to!string(year))[$-4..$]; }
+	path ~= yrString ~ "/";
+
+	int month = Clock.currTime().month;
+	string mthString = ("00" ~ to!string(month))[$-2..$];
+	while(!isDir(path ~ mthString)) { --month; mthString = ("00" ~ to!string(month))[$-2..$]; }
+	path ~= mthString ~ "/";
+	
+	int day = Clock.currTime().day;
+	string dayString = ("00" ~ to!string(day))[$-2..$];
+	while(!isDir(path ~ dayString)) { --day; dayString = ("00" ~ to!string(day))[$-2..$]; }
+	path ~= dayString;
+
+	string fileName;
+
+	foreach(file; dirEntries(path, SpanMode.shallow, false))
+	{
+		fileName = file[path.length+1..$-3]; // Remove .md
+	}
+
+	req.params["year"] = yrString;
+	req.params["month"] = mthString;
+	req.params["day"] = dayString;
+	req.params["url"] = fileName;
 
 	show(req, res);
 }
 
+void tag(HttpServerRequest req, HttpServerResponse res)
+{
+    string tag = req.path.split("/")[2];
+    string path = "articles/tags/"~tag;
+    string fileName;
+    foreach(file; dirEntries(path, SpanMode.shallow, true))
+    {
+        fileName = file;
+    }
+
+    string relLink = fileName.readLink();
+
+    req.params["year"] = relLink[6..10];
+    req.params["month"] = relLink[11..13];
+    req.params["day"] = relLink[14..16];
+    req.params["url"] = relLink[17..$-3];
+    
+    show(req, res);
+}
+
 void show(HttpServerRequest req, HttpServerResponse res)
 {
-	Article article = Article("id", 
-							  "author", 
-							  [
-								"tag", 
-								"nacht"
-							  ], 
-							  "title", 
-							  "this is some [text](http://www.google.de)  with some _emphasize_ and **bold** <phyrog@gmail.com>. and some `void main(string[] args) {}` code
-	pure @property void main(string[] args) {
-		for(int i = 0; i < 10; i++)
-			someCoolFunction();
-	}
-and some really cool
-# Headings
-with some awesome text
-## Subheadings
-between them
-### Subsubheadings
-> trololol
-## Other Subheadings
-to show off more of this awesome stuff
-### and so on
-and
-> quotation  
-> whoohoo");
+	Article article = parseArticleFile("articles/" 
+		~ req.params["year"] ~ "/" ~ req.params["month"] ~ "/" 
+		~ req.params["day"] ~ "/" ~ req.params["url"] ~ ".md");
 	res.renderCompat!("blog.dt", HttpServerRequest, "req", string, "title", Article, "article")(req, "d.lirium", article);
-	/* res.writeBody("Display a blog entry: " ~ req.params["year"] ~ ", " */ 
-	/* 									   ~ req.params["month"] ~ ", " */
-	/* 									   ~ req.params["day"] ~ ", " */
-	/* 									   ~ req.params["url"]); */
 }
 
 void create(HttpServerRequest req, HttpServerResponse res)

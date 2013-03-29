@@ -20,6 +20,7 @@ shared static this()
 		  .get(dlirium.conf.blogPrefix ~ "/:year/:month/:day/:url", &routes.blog.show)
 		  .get(dlirium.conf.blogPrefix ~ "/:year/:month/:day/:url/edit", &routes.blog.edit)
 		  .post(dlirium.conf.blogPrefix ~ "/:year/:month/:day/:url/save", &routes.blog.save)
+          .get(dlirium.conf.blogPrefix ~ "/tag/:tag", &routes.blog.tag)
 		  .get(dlirium.conf.blogPrefix ~ "/new", &routes.blog.create)
 		  .post(dlirium.conf.blogPrefix ~ "/new/save", &routes.blog.save);
 	

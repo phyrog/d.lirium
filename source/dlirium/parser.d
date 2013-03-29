@@ -1,33 +1,58 @@
 module dlirium.parser;
 
+import dlirium.data;
+
 import std.regex;
 import std.exception;
+import std.file;
 import std.algorithm : countUntil, sort, SwapStrategy;
 import std.stdio;
+import std.process;
+import std.string : toLower;
 
-void  parseFile(string[] file)
+import vibe.core.log;
+
+Article parseArticleFile(string fileName)
 {
-	enforce(file[1].match("^===+$"));
-	string title = file[0];
+
+	string file = cast(string)read(fileName);
+
+	if(file.length <= 0) return Article();
+
+	string[] lines = file.split(regex("\n"));
+
+	enforce(lines[1].match("^===+$"));
+	string title = lines[0];
 	string[] tags;
 	string text;
 
-	foreach(line; file[2 .. $])
+	foreach(line; lines[2 .. $])
 	{
 		string tmp = "";
 		bool isTag = false;
-		foreach(c; line)
+		foreach(i, c; line)
 		{
-			if(tmp == "" && c == '{' && !isTag) isTag = true;
+			if(tmp == "" && c == '{' && (i == 0 || line[i-1] != '\\') && !isTag) isTag = true;
 			else
 			{
 				if(isTag)
 				{
 					if(c == '}') // closing tag
 					{
-						if(tags.countUntil(tmp) == -1)
-							tags ~= tmp;
-						text ~= "[" ~ tmp ~ "](/tag/" ~ tmp ~ ")";
+						if(tags.countUntil(tmp) == -1 && tmp != ".." && tmp != ".") {
+							tags ~= tmp.toLower();
+                            // create symlink for tag
+                            string tagPath = "articles/tags/" ~ tmp.toLower();
+                            if(!tagPath.exists)
+                                system("mkdir -p " ~ tagPath);
+                            string filePath = tagPath ~ fileName[19..$];
+                            if(!filePath.exists)
+                                system("ln -s ../../" ~ fileName[9..$] ~ " " ~ tagPath ~ "/");
+                        }
+                        if(line[i-tmp.length-2] != '#')
+						    text ~= tmp;
+                        else
+                            text = text[0..$-1];
 						tmp = "";
 						isTag = false;
 					}
@@ -46,8 +71,12 @@ void  parseFile(string[] file)
 						tmp = "";
 					}
 				}
-				else { // no tag, append text
-					text ~= c;
+				else // no tag, append text
+				{
+					if(i > 0 && line[i-1] == '\\')
+						text = text[0..$-1] ~ c;
+					else
+						text ~= c;
 				}
 			}
 		}
@@ -57,18 +86,5 @@ void  parseFile(string[] file)
 	}
 	sort!("toLower(a) < toLower(b)", SwapStrategy.stable)(tags); // sort tags alphabetically
 	
-	writeln(title);
-	writeln(tags);
-	writeln(text);
-}
-
-void main(string[] args)
-{
-	string f = "This is the title
-===
-And this is {some} text {with} {some} {tag}s in it is great.
-	void bla() { {writeln(hallo)} }
-bla";
-
-	parseFile(f.split(regex(r"\n")));
+	return Article(title, tags, text);
 }
