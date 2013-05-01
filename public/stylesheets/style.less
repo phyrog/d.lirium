@@ -564,13 +564,16 @@ body {
 			border: none;
 		}
 
-		& > section, & > textarea {
+		& > section.text, & > textarea {
 			display: block;
 			margin-left: 3em;
 			margin-right: 3em;
 			margin-top: 1.5em;
+            margin-bottom: 2em;
 			font-family: "Cantarell";
 			font-size: 13pt;
+
+            border-bottom: 1px solid @lightBackgroundColor;
 
 			counter-reset: h2;
 
@@ -719,6 +722,37 @@ body {
 				}
 			}
 		}
+
+        section.comment {
+            padding: 4em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-top: 1em;
+
+            &:first-of-type:before {
+                content: 'Comments';
+            }
+
+            & > header {
+                margin-bottom: 0.5em;
+                font-family: @monospaceFont;
+                text-transform: lowercase;
+
+                & > a[rel=author] {
+                    color: @secondaryFontColor;
+                }
+                & > time {
+                    letter-spacing: 0.2em;
+                    font-size: 0.9em;
+                    position: absolute;
+                    right: 5em;
+                }
+            }
+
+            & > p {
+                margin-left: 2.5em;
+            }
+        }
 	}
 
 	& > article.unpub {

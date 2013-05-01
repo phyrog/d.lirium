@@ -5,12 +5,21 @@ block content
 		header
 			aside
 				time
-					- string date = req.params["day"] ~ "." ~ req.params["month"] ~ ".";
+					- string date = article.date.day ~ "." ~ article.date.month;
 					span= date
-					| #{req.params["year"]}
+					| #{article.date.year}
+				a(href="/user/#{article.author}", rel="author")= article.author
 				ul
 					- foreach(tag; article.tags)
 						li
 							a(href="/tag/#{tag}", rel="tag")= tag
 			h1= article.title
-		section!= article.text
+		section.text!= article.text
+		- if(article.commentable && article.published)
+			- foreach(comment; article.comments)
+				section.comment
+					header
+						a(href="/user/#{comment.author}",rel="author")= comment.author
+						- string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
+						time= comDate
+					| !{comment.text}

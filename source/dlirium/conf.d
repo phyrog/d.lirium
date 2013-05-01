@@ -4,7 +4,7 @@ module dlirium.conf;
  + Server settings
  +/
 
-ushort portNo = 8080;
+ushort portNo = 3838;
 
 /+
  + Blog settings
