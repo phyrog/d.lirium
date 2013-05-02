@@ -10,6 +10,7 @@ ushort portNo = 3838;
  + Blog settings
  +/
 
+public string pageTitle = "d.lirium";
 public string blogPrefix = "";
 
 
