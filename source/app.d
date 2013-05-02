@@ -18,6 +18,9 @@ shared static this()
 	 +/
 	router.get(dlirium.conf.blogPrefix ~ "/", &routes.blog.index)
 
+          .get(dlirium.conf.blogPrefix ~ "/create", &routes.blog.createForm)
+          .post(dlirium.conf.blogPrefix ~ "/create", &routes.blog.create)
+
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag", &routes.blog.tag)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug", &routes.blog.show)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug/next", &routes.blog.next)
@@ -30,7 +33,6 @@ shared static this()
     /+
 		  .get(dlirium.conf.blogPrefix ~ "/:year/:month/:day/:url/edit", &routes.blog.edit)
 		  .post(dlirium.conf.blogPrefix ~ "/:year/:month/:day/:url/save", &routes.blog.save)
-		  .get(dlirium.conf.blogPrefix ~ "/new", &routes.blog.create)
 		  .post(dlirium.conf.blogPrefix ~ "/new/save", &routes.blog.save);
 	+/
 	/+

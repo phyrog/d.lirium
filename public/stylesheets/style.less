@@ -556,23 +556,17 @@ body {
 			}
     	}
 
-		& > textarea {
-			display: block;
-			position: relative;
-			left: -3em;
-			box-sizing: border-box;
-			padding-left: 2.5em;
-			padding-right: 2.5em;
-			width: 100%;
-			max-width: 100%;
-			min-height: 30em;
-			background-color: @darkBackgroundColor;
-			overflow: visible;
-			white-space: word-wrap;
-			border: none;
-		}
+        & > form > * {
+            display: block;
+            color: @primaryFontColor;
+            padding: 0.5em;
+            background-color: lighten(@lightBackgroundColor, 5%);
+            margin: 0.5em;
+            border: none;
+            cursor: text;
+        }
 
-		& > section.text, & > textarea {
+		& > section.text {
 			display: block;
 			margin-left: 3em;
 			margin-right: 3em;

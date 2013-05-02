@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    article
+        form(action="/create", method="post")
+            input(type="text", name="title", placeholder="Title")
+            input(type="text", name="author", placeholder="Author")
+            input(type="text", name="tags", placeholder="Tags")
+            textarea(name="text", placeholder="Text")
+            input(type="submit")

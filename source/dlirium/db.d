@@ -79,7 +79,8 @@ public Article getPreviousArticle(string slug, string tag = "")
 }
 
 
-public void saveArticle()
+public void insertArticle(Article article)
 {
-    
+    Bson bson = article.toBson();
+    col_articles.insert(bson);
 }

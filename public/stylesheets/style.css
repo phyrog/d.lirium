@@ -478,23 +478,16 @@ body > article > header > aside:first-of-type > ul li span:before {
 body > article > header > aside:first-of-type > ul li:last-of-type a[rel=tag]:after {
   content: "";
 }
-body > article > textarea {
+body > article > form > * {
   display: block;
-  position: relative;
-  left: -3em;
-  box-sizing: border-box;
-  padding-left: 2.5em;
-  padding-right: 2.5em;
-  width: 100%;
-  max-width: 100%;
-  min-height: 30em;
-  background-color: #121212;
-  overflow: visible;
-  white-space: word-wrap;
+  color: #dadada;
+  padding: 0.5em;
+  background-color: #292929;
+  margin: 0.5em;
   border: none;
+  cursor: text;
 }
-body > article > section.text,
-body > article > textarea {
+body > article > section.text {
   display: block;
   margin-left: 3em;
   margin-right: 3em;
@@ -504,19 +497,14 @@ body > article > textarea {
   font-size: 13pt;
   counter-reset: h2;
 }
-body > article > section.text > p,
-body > article > textarea > p {
+body > article > section.text > p {
   margin-bottom: 1em;
   text-align: justify;
 }
 body > article > section.text > h2:after,
-body > article > textarea > h2:after,
 body > article > section.text > h3:after,
-body > article > textarea > h3:after,
 body > article > section.text > h4:after,
-body > article > textarea > h4:after,
-body > article > section.text > h5:after,
-body > article > textarea > h5:after {
+body > article > section.text > h5:after {
   display: inline-block;
   width: 60px;
   position: absolute;
@@ -524,23 +512,15 @@ body > article > textarea > h5:after {
   text-align: right;
 }
 body > article > section.text > h2 > a,
-body > article > textarea > h2 > a,
 body > article > section.text > h3 > a,
-body > article > textarea > h3 > a,
 body > article > section.text > h4 > a,
-body > article > textarea > h4 > a,
-body > article > section.text > h5 > a,
-body > article > textarea > h5 > a {
+body > article > section.text > h5 > a {
   color: #dadada;
 }
 body > article > section.text > h2 > a:before,
-body > article > textarea > h2 > a:before,
 body > article > section.text > h3 > a:before,
-body > article > textarea > h3 > a:before,
 body > article > section.text > h4 > a:before,
-body > article > textarea > h4 > a:before,
-body > article > section.text > h5 > a:before,
-body > article > textarea > h5 > a:before {
+body > article > section.text > h5 > a:before {
   display: inline-block;
   width: 60px;
   position: absolute;
@@ -549,103 +529,78 @@ body > article > textarea > h5 > a:before {
   color: #465457;
 }
 body > article > section.text > h2 > a:hover,
-body > article > textarea > h2 > a:hover,
 body > article > section.text > h3 > a:hover,
-body > article > textarea > h3 > a:hover,
 body > article > section.text > h4 > a:hover,
-body > article > textarea > h4 > a:hover,
-body > article > section.text > h5 > a:hover,
-body > article > textarea > h5 > a:hover {
+body > article > section.text > h5 > a:hover {
   text-decoration: none;
 }
 body > article > section.text > h2 > a:hover:before,
-body > article > textarea > h2 > a:hover:before,
 body > article > section.text > h3 > a:hover:before,
-body > article > textarea > h3 > a:hover:before,
 body > article > section.text > h4 > a:hover:before,
-body > article > textarea > h4 > a:hover:before,
-body > article > section.text > h5 > a:hover:before,
-body > article > textarea > h5 > a:hover:before {
+body > article > section.text > h5 > a:hover:before {
   color: #ff8700;
 }
-body > article > section.text > h2:after,
-body > article > textarea > h2:after {
+body > article > section.text > h2:after {
   content: " " counter(h2);
 }
-body > article > section.text > h2 > a:before,
-body > article > textarea > h2 > a:before {
+body > article > section.text > h2 > a:before {
   content: "#";
 }
-body > article > section.text > h2,
-body > article > textarea > h2 {
+body > article > section.text > h2 {
   counter-increment: h2 1;
   counter-reset: h3;
   counter-reset: h4;
   counter-reset: h5;
 }
-body > article > section.text > h3:after,
-body > article > textarea > h3:after {
+body > article > section.text > h3:after {
   content: " " counter(h2) "." counter(h3);
 }
-body > article > section.text > h3 > a:before,
-body > article > textarea > h3 > a:before {
+body > article > section.text > h3 > a:before {
   content: "##";
 }
-body > article > section.text > h3,
-body > article > textarea > h3 {
+body > article > section.text > h3 {
   counter-increment: h3 1;
   counter-reset: h4;
   counter-reset: h5;
 }
-body > article > section.text > h4:after,
-body > article > textarea > h4:after {
+body > article > section.text > h4:after {
   content: " " counter(h2) "." counter(h3) "." counter(h4);
 }
-body > article > section.text > h4 > a:before,
-body > article > textarea > h4 > a:before {
+body > article > section.text > h4 > a:before {
   content: "###";
 }
-body > article > section.text > h4,
-body > article > textarea > h4 {
+body > article > section.text > h4 {
   counter-increment: h4 1;
   counter-reset: h5;
 }
-body > article > section.text > h5:after,
-body > article > textarea > h5:after {
+body > article > section.text > h5:after {
   content: " " counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
 }
-body > article > section.text > h5 > a:before,
-body > article > textarea > h5 > a:before {
+body > article > section.text > h5 > a:before {
   content: "####";
 }
-body > article > section.text > h5,
-body > article > textarea > h5 {
+body > article > section.text > h5 {
   counter-increment: h5 1;
 }
-body > article > section.text > ul,
-body > article > textarea > ul {
+body > article > section.text > ul {
   padding: 0.5em;
   list-style-type: square;
 }
-body > article > section.text > ul > li,
-body > article > textarea > ul > li {
+body > article > section.text > ul > li {
   padding: 0.3em;
   color: #d0d0d0;
 }
-body > article > section.text form,
-body > article > textarea form {
+body > article > section.text form {
   display: inline-block;
   box-sizing: border-box;
   width: 50%;
   vertical-align: top;
   padding: 1em;
 }
-body > article > section.text form:last-of-type,
-body > article > textarea form:last-of-type {
+body > article > section.text form:last-of-type {
   border-left: none;
 }
-body > article > section.text form input,
-body > article > textarea form input {
+body > article > section.text form input {
   display: block;
   box-sizing: border-box;
   background-color: #1c1c1c;
@@ -656,30 +611,24 @@ body > article > textarea form input {
   width: 100%;
   color: #dadada;
 }
-body > article > section.text form input[type=submit],
-body > article > textarea form input[type=submit] {
+body > article > section.text form input[type=submit] {
   padding: 1em;
 }
-body > article > section.text form input:last-of-type,
-body > article > textarea form input:last-of-type {
+body > article > section.text form input:last-of-type {
   margin-bottom: 0;
 }
-body > article > section.text a,
-body > article > textarea a {
+body > article > section.text a {
   color: #ff8700;
 }
-body > article > section.text a:hover,
-body > article > textarea a:hover {
+body > article > section.text a:hover {
   text-decoration: underline;
 }
-body > article > section.text.edit,
-body > article > textarea.edit {
+body > article > section.text.edit {
   font-family: "Source Code Pro";
   font-weight: normal;
   white-space: pre;
 }
-body > article > section.text.edit:focus,
-body > article > textarea.edit:focus {
+body > article > section.text.edit:focus {
   outline: none;
 }
 body > article > section.comment {
