@@ -11,7 +11,7 @@ import dlirium.db;
 import std.file;
 import std.datetime;
 import std.conv;
-import std.string : strip;
+import std.string : strip, translate;
 import std.array : split, array;
 
 void renderArticle(HttpServerRequest req, HttpServerResponse res, Article article)
@@ -37,7 +37,9 @@ void show(HttpServerRequest req, HttpServerResponse res)
 
 void tag(HttpServerRequest req, HttpServerResponse res)
 {
-    renderArticle(req, res, getLatestArticleByFilter("tags", req.params["tag"]));
+    Article article = getLatestArticleByFilter("tags", req.params["tag"].translate([' ': '+']));
+    if(article != Article()) renderArticle(req, res, article);
+    else res.redirect("/");
 }
 
 void edit(HttpServerRequest req, HttpServerResponse res)
