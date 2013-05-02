@@ -34,16 +34,19 @@ public Article getArticle()
 {
     Bson[string] query;
     Bson[string] q = ["query": Bson(query), "orderby" : Bson(["_id" : Bson(-1)]), "maxScan": Bson(1)];
-    Bson ret = col_articles.find(q).front;
-    return Article.fromBson(ret);
+    auto res = col_articles.find(q);
+    if(!res.empty) return Article.fromBson(res.front);
+    else return Article();
 }
 
 public Article getLatestArticleByFilter(string key, string value)
 {
     Bson[string] query = [key: Bson(value)];
     Bson[string] q = ["query": Bson(query), "orderby" : Bson(["_id" : Bson(-1)]), "maxScan": Bson(1)];
-    Bson ret = col_articles.find(q).front;
-    return Article.fromBson(ret);
+
+    auto res = col_articles.find(q);
+    if(!res.empty) return Article.fromBson(res.front);
+    else return Article();
 }
 
 public Article getNextArticle(string slug, string tag = "")
