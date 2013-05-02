@@ -17,7 +17,7 @@ void renderArticle(HttpServerRequest req, HttpServerResponse res, Article articl
     res.renderCompat!("blog.dt", HttpServerRequest, "req", Article, "article")(req, article);
 }
 
-void redirectArticle(HttpServerResponse res, Article article)
+void redirectArticle(HttpServerRequest req, HttpServerResponse res, Article article)
 {
     if("tag" in req.params) res.redirect("/tag/" ~ req.params["tag"] ~ "/" ~ article.slug);
     else res.redirect("/" ~ article.slug);
@@ -45,12 +45,12 @@ void edit(HttpServerRequest req, HttpServerResponse res)
 
 void next(HttpServerRequest req, HttpServerResponse res)
 {
-    res.redirectArticle(getNextArticle(req.params["slug"], req.params.get("tag", "")));
+    redirectArticle(req, res, getNextArticle(req.params["slug"], req.params.get("tag", "")));
 }
 
 void prev(HttpServerRequest req, HttpServerResponse res)
 {
-    res.redirectArticle(getPreviousArticle(req.params["slug"], req.params.get("tag", "")));
+    redirectArticle(req, res, getPreviousArticle(req.params["slug"], req.params.get("tag", "")));
 }
 /+
 void create(HttpServerRequest req, HttpServerResponse res)
