@@ -494,7 +494,6 @@ body > article > textarea {
   margin-bottom: 2em;
   font-family: "Cantarell";
   font-size: 13pt;
-  border-bottom: 1px solid #1c1c1c;
   counter-reset: h2;
 }
 body > article > section.text > p,
@@ -675,30 +674,37 @@ body > article > section.text.edit:focus,
 body > article > textarea.edit:focus {
   outline: none;
 }
-body > article section.comment {
+body > article > section.comment {
   padding: 4em;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-top: 1em;
 }
-body > article section.comment:first-of-type:before {
+body > article > section.comment:nth-of-type(2) {
+  border-top: 1px solid #1c1c1c;
+}
+body > article > section.comment:nth-of-type(2):before {
+  display: block;
+  position: relative;
+  left: -1em;
+  margin-bottom: 0.5em;
   content: 'Comments';
 }
-body > article section.comment > header {
+body > article > section.comment > header {
   margin-bottom: 0.5em;
   font-family: "Source Code Pro";
   text-transform: lowercase;
 }
-body > article section.comment > header > a[rel=author] {
+body > article > section.comment > header > a[rel=author] {
   color: #ff8700;
 }
-body > article section.comment > header > time {
+body > article > section.comment > header > time {
   letter-spacing: 0.2em;
   font-size: 0.9em;
   position: absolute;
   right: 5em;
 }
-body > article section.comment > p {
+body > article > section.comment > p {
   margin-left: 2.5em;
 }
 body > article.unpub > header > h1:after {

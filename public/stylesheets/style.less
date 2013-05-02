@@ -573,7 +573,6 @@ body {
 			font-family: "Cantarell";
 			font-size: 13pt;
 
-            border-bottom: 1px solid @lightBackgroundColor;
 
 			counter-reset: h2;
 
@@ -723,14 +722,22 @@ body {
 			}
 		}
 
-        section.comment {
+        & > section.comment {
             padding: 4em;
             padding-top: 1em;
             padding-bottom: 1em;
             margin-top: 1em;
-
-            &:first-of-type:before {
-                content: 'Comments';
+            
+            &:nth-of-type(2) {
+                border-top: 1px solid @lightBackgroundColor;
+            
+                &:before {
+                    display: block;
+                    position: relative;
+                    left: -1em;
+                    margin-bottom: 0.5em;
+                    content: 'Comments';
+                }
             }
 
             & > header {
