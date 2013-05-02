@@ -18,6 +18,12 @@ void renderArticle(HttpServerRequest req, HttpServerResponse res, Article articl
     res.renderCompat!("blog.dt", HttpServerRequest, "req", string, "title", Article, "article")(req, "d.lirium", article);
 }
 
+void redirectArticle(HttpServerRequest req, HttpServerResponse res, Article article)
+{
+    if("tag" in req.params) res.redirect("/tag/" ~ req.params["tag"] ~ "/" ~ article.slug);
+    else res.redirect("/" ~ article.slug);
+}
+
 void index(HttpServerRequest req, HttpServerResponse res)
 {
     renderArticle(req, res, getArticle());
@@ -30,7 +36,22 @@ void show(HttpServerRequest req, HttpServerResponse res)
 
 void tag(HttpServerRequest req, HttpServerResponse res)
 {
-    renderArticle(req, res, getArticleByTag(req.params["tag"]));
+    renderArticle(req, res, getLatestArticleByFilter("tags", req.params["tag"]));
+}
+
+void edit(HttpServerRequest req, HttpServerResponse res)
+{
+    renderArticle(req, res, getArticle(req.params["slug"]));
+}
+
+void next(HttpServerRequest req, HttpServerResponse res)
+{
+    redirectArticle(req, res, getNextArticle(req.params["slug"], req.params.get("tag", "")));
+}
+
+void prev(HttpServerRequest req, HttpServerResponse res)
+{
+    redirectArticle(req, res, getPreviousArticle(req.params["slug"], req.params.get("tag", "")));
 }
 /+
 void create(HttpServerRequest req, HttpServerResponse res)

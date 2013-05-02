@@ -7,8 +7,6 @@ import vibe.data.bson;
 import vibe.data.json;
 import dlirium.data;
 
-import std.stdio;
-
 private MongoClient     db_connection;
 private MongoCollection col_articles;
 private MongoCollection col_users;
@@ -40,13 +38,43 @@ public Article getArticle()
     return Article.fromBson(ret);
 }
 
-public Article getArticleByTag(string tag)
+public Article getLatestArticleByFilter(string key, string value)
 {
-    Bson[string] query = ["tags": Bson(tag)];
+    Bson[string] query = [key: Bson(value)];
     Bson[string] q = ["query": Bson(query), "orderby" : Bson(["_id" : Bson(-1)]), "maxScan": Bson(1)];
     Bson ret = col_articles.find(q).front;
     return Article.fromBson(ret);
 }
+
+public Article getNextArticle(string slug, string tag = "")
+{
+    Article current = getArticle(slug);
+    Bson[string] query = ["_id": Bson(["$lt": Bson(current.id)])];
+    if(tag != "")
+    {
+        query["tags"] = Bson(tag);
+    }
+    Bson[string] q = ["query": Bson(query), "orderby": Bson(["_id": Bson(-1)]), "maxScan": Bson(1)];
+    auto res = col_articles.find(q);
+    if(!res.empty) return Article.fromBson(res.front);
+    else return current;
+}
+
+public Article getPreviousArticle(string slug, string tag = "")
+{
+    Article current = getArticle(slug);
+    Bson[string] query = ["_id": Bson(["$gt": Bson(current.id)])];
+    if(tag != "")
+    {
+        logInfo("with tag: " ~ tag);
+        query["tags"] = Bson(tag);
+    }
+    Bson[string] q = ["query": Bson(query), "orderby": Bson(["_id": Bson(-1)]), "maxScan": Bson(1)];
+    auto res = col_articles.find(q);
+    if(!res.empty) return Article.fromBson(res.front);
+    else return current;
+}
+
 
 public void saveArticle()
 {

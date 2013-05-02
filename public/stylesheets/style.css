@@ -260,6 +260,14 @@ body > nav li li a:hover:after {
   margin-left: 0;
   margin-right: -0.3em;
 }
+body > nav a[rel=next],
+body > nav a[rel=previous] {
+  display: inline-block;
+  font-size: 2em;
+  padding: 0.1em;
+  margin-right: 0.25em;
+  color: #ff8700;
+}
 body > article {
   position: relative;
   padding: 1em;
@@ -680,6 +688,9 @@ body > article > section.comment {
   padding-bottom: 1em;
   margin-top: 1em;
 }
+body > article > section.comment p {
+  text-align: justify;
+}
 body > article > section.comment:nth-of-type(2) {
   border-top: 1px solid #1c1c1c;
 }
@@ -688,7 +699,19 @@ body > article > section.comment:nth-of-type(2):before {
   position: relative;
   left: -1em;
   margin-bottom: 0.5em;
-  content: 'Comments';
+  font-family: "Source Code Pro";
+  font-weight: bold;
+  color: #465457;
+  content: '#comments:[';
+}
+body > article > section.comment:last-of-type:after {
+  display: block;
+  position: relative;
+  left: -1em;
+  font-family: "Source Code Pro";
+  font-weight: bold;
+  color: #465457;
+  content: ']';
 }
 body > article > section.comment > header {
   margin-bottom: 0.5em;

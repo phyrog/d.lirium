@@ -1,5 +1,10 @@
 extends layout
 
+block navigation
+	- string path = slugPath(req.path, req.params, article.slug);
+	a(href="#{path}/prev", rel="previous") ≺
+	a(href="#{path}/next", rel="next") ≻
+
 block content
 	article
 		header

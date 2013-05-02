@@ -284,6 +284,14 @@ body {
 				}
 			}
 		}
+        
+        a[rel=next], a[rel=previous] {
+            display: inline-block;
+            font-size: 2em;
+            padding: 0.1em;
+            margin-right: 0.25em;
+            color: @secondaryFontColor;
+        }
 	}
 
 	& > article {
@@ -544,9 +552,9 @@ body {
 							}
 						}
 					}
-				}
+                }
 			}
-		}
+    	}
 
 		& > textarea {
 			display: block;
@@ -728,6 +736,10 @@ body {
             padding-bottom: 1em;
             margin-top: 1em;
             
+            p {
+                text-align: justify;
+            }
+            
             &:nth-of-type(2) {
                 border-top: 1px solid @lightBackgroundColor;
             
@@ -736,7 +748,21 @@ body {
                     position: relative;
                     left: -1em;
                     margin-bottom: 0.5em;
-                    content: 'Comments';
+                    font-family: @monospaceFont;
+                    font-weight: bold;
+                    color: @commentFontColor;
+                    content: '#comments:[';
+                }
+            }
+            &:last-of-type {
+                &:after {
+                    display: block;
+                    position: relative;
+                    left: -1em;
+                    font-family: @monospaceFont;
+                    font-weight: bold;
+                    color: @commentFontColor;
+                    content: ']';
                 }
             }
 
