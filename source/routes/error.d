@@ -6,5 +6,5 @@ void handler(HttpServerRequest req,
 			 HttpServerResponse res,
 			 HttpServerErrorInfo error)
 {
-	res.writeBody("Error.");
+	res.writeBody("Error.\n" ~ error.message ~ "\n" ~ error.debugMessage);
 }
