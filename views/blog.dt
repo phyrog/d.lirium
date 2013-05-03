@@ -21,12 +21,12 @@ block content
         section.text!= article.text
         - if(article.commentable && article.published)
             - foreach(comment; article.comments)
-                section.comment
+                section.comment(id="#{comment.id.toString()}")
                     header
                         a(href="/user/#{comment.author}",rel="author")= comment.author
                         - string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
                         time= comDate
-                    | !{comment.text}
+                    | #{comment._text}
             form(action="#{path}/comment", method="post")
                 input(type="text", name="author", placeholder="Author")
                 textarea(name="text", placeholder="Text")

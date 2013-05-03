@@ -107,8 +107,10 @@ void save(HttpServerRequest req, HttpServerResponse res)
 
 void comment(HttpServerRequest req, HttpServerResponse res)
 {
-    Comment com = Comment(BsonObjectID.generate(), req.form["author"], dlirium.data.Date(Clock.currTime()), req.form["text"]);
-    addComment(req.params["slug"], com);
-
+    if("author" in req.form && req.form["author"] != "" && "text" in req.form && req.form["text"] != "")
+    {
+        Comment com = Comment(BsonObjectID.generate(), req.form["author"], dlirium.data.Date(Clock.currTime()), req.form["text"]);
+        addComment(req.params["slug"], com);
+    }
     redirectArticle(req, res, req.params["slug"]);
 }

@@ -416,14 +416,35 @@ body > article > header > aside:first-of-type > ul li span:before {
 body > article > header > aside:first-of-type > ul li:last-of-type a[rel=tag]:after {
   content: "";
 }
-body > article > form > * {
+body > article > form > input,
+body > article > form > textarea {
   display: block;
+  position: relative;
+  width: 80%;
+  max-width: 80%;
+  min-width: 80%;
   color: #dadada;
   padding: 0.5em;
+  left: 10%;
+  margin-left: -0.5em;
+  box-sizing: border-box;
   background-color: #292929;
   margin: 0.5em;
   border: none;
   cursor: text;
+}
+body > article > form > input[type="submit"],
+body > article > form > textarea[type="submit"] {
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+body > article > form > input[type="submit"]:hover,
+body > article > form > textarea[type="submit"]:hover {
+  background-color: #363636;
+}
+body > article > section.text + form {
+  border-top: 1px solid #1c1c1c;
+  padding-top: 1em;
 }
 body > article > section.text {
   display: block;
