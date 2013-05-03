@@ -1,12 +1,10 @@
 extends layout
 
-block navigation
-
 block content
+    - string path = slugPath(req.path, req.params, article.slug);
     article
         header
             nav
-                - string path = slugPath(req.path, req.params, article.slug);
                 a(href="#{path}/prev", rel="prev", title="Earlier article") ≺
                 a(href="#{path}/next", rel="next", title="Newer article") ≻
             aside
@@ -29,3 +27,7 @@ block content
                         - string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
                         time= comDate
                     | !{comment.text}
+            form(action="#{path}/comment", method="post")
+                input(type="text", name="author", placeholder="Author")
+                textarea(name="text", placeholder="Text")
+                input(type="submit")

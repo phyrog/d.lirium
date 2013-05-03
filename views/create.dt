@@ -2,9 +2,10 @@ extends layout
 
 block content
     article
-        form(action="/create", method="post")
-            input(type="text", name="title", placeholder="Title")
-            input(type="text", name="author", placeholder="Author")
-            input(type="text", name="tags", placeholder="Tags")
-            textarea(name="text", placeholder="Text")
+        form(action="/save", method="post")
+            input(type="hidden", name="slug", value="#{article.slug}")
+            input(type="text", name="title", placeholder="Title", value="#{article.title}")
+            input(type="text", name="author", placeholder="Author", value="#{article.author}")
+            input(type="text", name="tags", placeholder="Tags", value="#{article.tags.join(\", \")}")
+            textarea(name="text", placeholder="Text")= article._text
             input(type="submit")

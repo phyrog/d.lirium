@@ -35,7 +35,6 @@ html
                     a(href="/tag/life") Life
                 li
                     a(href="/aboutme") About me
-            block navigation
         block content
         a(href="http://vibed.org/templates/diet") Diet
         a(href="http://lesscss.org") LESS

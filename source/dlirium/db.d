@@ -78,9 +78,22 @@ public Article getPreviousArticle(string slug, string tag = "")
     else return current;
 }
 
-
 public void insertArticle(Article article)
 {
     Bson bson = article.toBson();
     col_articles.insert(bson);
+}
+
+public void saveArticle(Article article)
+{
+    Bson bson = article.toBson();
+    Bson[string] q = ["_id": Bson(article.id)];
+    col_articles.update(Bson(q), bson);
+}
+
+public void addComment(string slug, Comment comment)
+{
+    Bson bson = comment.toBson();
+    Bson[string] q = ["slug": Bson(slug)];
+    col_articles.update(q, Bson(["$push": Bson(["comments": bson])]));
 }
