@@ -2,8 +2,8 @@ extends layout
 
 block navigation
 	- string path = slugPath(req.path, req.params, article.slug);
-	a(href="#{path}/prev", rel="previous") ≺
-	a(href="#{path}/next", rel="next") ≻
+	a(href="#{path}/prev", rel="previous", title="Earlier article") ≺
+	a(href="#{path}/next", rel="next", title="Newer article") ≻
 
 block content
 	article

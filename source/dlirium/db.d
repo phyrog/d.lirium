@@ -52,12 +52,12 @@ public Article getLatestArticleByFilter(string key, string value)
 public Article getNextArticle(string slug, string tag = "")
 {
     Article current = getArticle(slug);
-    Bson[string] query = ["_id": Bson(["$lt": Bson(current.id)])];
+    Bson[string] query = ["_id": Bson(["$gt": Bson(current.id)])];
     if(tag != "")
     {
         query["tags"] = Bson(tag);
     }
-    Bson[string] q = ["query": Bson(query), "orderby": Bson(["_id": Bson(-1)]), "maxScan": Bson(1)];
+    Bson[string] q = ["query": Bson(query), "orderby": Bson(["_id": Bson(1)]), "maxScan": Bson(1)];
     auto res = col_articles.find(q);
     if(!res.empty) return Article.fromBson(res.front);
     else return current;
@@ -66,7 +66,7 @@ public Article getNextArticle(string slug, string tag = "")
 public Article getPreviousArticle(string slug, string tag = "")
 {
     Article current = getArticle(slug);
-    Bson[string] query = ["_id": Bson(["$gt": Bson(current.id)])];
+    Bson[string] query = ["_id": Bson(["$lt": Bson(current.id)])];
     if(tag != "")
     {
         logInfo("with tag: " ~ tag);
