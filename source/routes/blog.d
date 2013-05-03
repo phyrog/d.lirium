@@ -65,8 +65,9 @@ void articleForm(HttpServerRequest req, HttpServerResponse res)
 
 void save(HttpServerRequest req, HttpServerResponse res)
 {
-    bool published = true;
-    bool commentable = true;
+    logInfo(commentable);
+    bool published = cast(bool)("published" in req.form);
+    bool commentable = cast(bool)("commentable" in req.form);
     string author = req.form["author"];
     string title = req.form["title"];
     string slug = makeSlugFromHeader(title);
