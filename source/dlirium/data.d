@@ -28,11 +28,11 @@ struct Article
     Date         date;
     string       title;
     string       slug;
-	string[]     tags;
+    string[]     tags;
     string       _text;
     Comment[]    comments;
 
-	@property public string text() { return this._text.filterMarkdown(); }
+    @property public string text() { return this._text.filterMarkdown(); }
 
     const Bson toBson()
     {
