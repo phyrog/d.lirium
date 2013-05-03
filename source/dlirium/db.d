@@ -97,3 +97,9 @@ public void addComment(string slug, Comment comment)
     Bson[string] q = ["slug": Bson(slug)];
     col_articles.update(q, Bson(["$push": Bson(["comments": bson])]));
 }
+
+public void removeComment(string slug, string id)
+{
+    Bson[string] q = ["slug": Bson(slug)];
+    col_articles.update(q, Bson(["$pull": Bson(["comments": Bson(["_id": Bson(BsonObjectID.fromString(id))])])]));
+}

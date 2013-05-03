@@ -4,8 +4,14 @@ block content
     article
         form(action="/save", method="post")
             input(type="hidden", name="slug", value="#{article.slug}")
-            input(type="checkbox", name="commentable", value="true") Commentable
-            input(type="checkbox", name="published", value="true") Published
+            - if(article.commentable)
+                input(type="checkbox", name="commentable", value="true", checked="checked") Commentable
+            - else
+                input(type="checkbox", name="commentable", value="true") Commentable
+            - if(article.published)
+                input(type="checkbox", name="published", value="true", checked="checked") Published
+            - else
+                input(type="checkbox", name="published", value="true") Published
             input(type="text", name="title", placeholder="Title", value="#{article.title}")
             input(type="text", name="author", placeholder="Author", value="#{article.author}")
             input(type="text", name="tags", placeholder="Tags", value="#{article.tags.join(\", \")}")

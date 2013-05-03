@@ -24,6 +24,7 @@ block content
                 section.comment(id="#{comment.id.toString()}")
                     header
                         a(href="/user/#{comment.author}",rel="author")= comment.author
+                        a(href="#{path}/#{comment.id.toString()}/remove") [Delete]
                         - string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
                         time= comDate
                     | #{comment._text}
