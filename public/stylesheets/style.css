@@ -218,6 +218,7 @@ body > nav {
   position: absolute;
   width: 10em;
   left: -10em;
+  margin-top: 4.5em;
   text-align: right;
 }
 body > nav li {
@@ -260,14 +261,6 @@ body > nav li li a:hover:after {
   margin-left: 0;
   margin-right: -0.3em;
 }
-body > nav a[rel=next],
-body > nav a[rel=previous] {
-  display: inline-block;
-  font-size: 2em;
-  padding: 0.1em;
-  margin-right: 0.25em;
-  color: #ff8700;
-}
 body > article {
   position: relative;
   padding: 1em;
@@ -284,80 +277,25 @@ body > article.overlay {
   top: 9.5em;
   z-index: 98;
 }
-body > article > header > nav {
-  opacity: 0.85;
-  z-index: 99;
-  position: fixed;
-  top: 0em;
-  left: 50%;
-  margin-left: -5em;
-  width: 10em;
-  padding: 0.5em;
-  font-family: "Source Code Pro";
-  background-color: #0d0d0d;
-  border: 2px solid rgba(255, 255, 255, 0);
-  border-top: none;
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  -webkit-transition: all 0.5s;
-}
-body > article > header > nav:hover {
-  border: 2px solid rgba(255, 255, 255, 0) !important;
-  border-top: none !important;
-  top: 0 !important;
-  opacity: 1;
-}
-body > article > header > nav:before {
-  display: block;
+body > article > header > nav > a[rel="next"],
+body > article > header > nav > a[rel="prev"] {
   position: absolute;
-  top: -0.5em;
-  left: -1.5em;
-  border-right: 0.5em solid #0d0d0d;
-  border-top: 0.5em solid #0d0d0d;
-  height: 1.5em;
-  width: 1.5em;
-  content: "\a0";
-  border-top-right-radius: 1.5em;
+  top: 0;
+  font-size: 4em;
+  color: #424242;
+  transition: color 0.5s;
 }
-body > article > header > nav:after {
-  display: block;
-  position: absolute;
-  top: -0.5em;
-  right: -1.5em;
-  border-left: 0.5em solid #0d0d0d;
-  border-top: 0.5em solid #0d0d0d;
-  height: 1.5em;
-  width: 1.5em;
-  content: "\a0";
-  border-top-left-radius: 1.5em;
+body > article > header > nav > a[rel="next"][rel="prev"],
+body > article > header > nav > a[rel="prev"][rel="prev"] {
+  left: -1em;
 }
-body > article > header > nav li {
-  list-style-type: none;
-  display: inline-block;
+body > article > header > nav > a[rel="next"][rel="next"],
+body > article > header > nav > a[rel="prev"][rel="next"] {
+  right: -1em;
 }
-body > article > header > nav li a {
-  color: #ff8700;
-  display: block;
-  width: 3.75em;
-  font-weight: bold;
-  padding: 0.5em;
-  background-color: #1c1c1c;
-  border-radius: 0.25em;
-  border: 2px solid #0c0c0c;
-  text-transform: lowercase;
-  text-align: center;
-}
-body > article > header > nav li a:hover {
-  background-color: #292929;
-}
-body > article > header > nav li:first-of-type a {
-  border-right: none;
-  border-bottom-right-radius: 0em;
-  border-top-right-radius: 0em;
-}
-body > article > header > nav li:last-of-type a {
-  border-bottom-left-radius: 0em;
-  border-top-left-radius: 0em;
+body > article > header > nav > a[rel="next"]:hover,
+body > article > header > nav > a[rel="prev"]:hover {
+  color: #696969;
 }
 body > article > header > h1 {
   font-family: "URW Gothic L";
@@ -379,7 +317,7 @@ body > article > header > aside:first-of-type {
   position: absolute;
   margin-left: 0.5em;
   left: 100%;
-  top: 2em;
+  top: 4.5em;
   font-family: "Source Code Pro";
   font-weight: bold;
 }

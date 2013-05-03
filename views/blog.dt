@@ -1,13 +1,14 @@
 extends layout
 
 block navigation
-    - string path = slugPath(req.path, req.params, article.slug);
-    a(href="#{path}/prev", rel="previous", title="Earlier article") ≺
-    a(href="#{path}/next", rel="next", title="Newer article") ≻
 
 block content
     article
         header
+            nav
+                - string path = slugPath(req.path, req.params, article.slug);
+                a(href="#{path}/prev", rel="prev", title="Earlier article") ≺
+                a(href="#{path}/next", rel="next", title="Newer article") ≻
             aside
                 time
                     - string date = article.date.day ~ "." ~ article.date.month;
