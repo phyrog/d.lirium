@@ -4,16 +4,18 @@ block content
     article
         form(action="/save", method="post")
             input(type="hidden", name="slug", value="#{article.slug}")
-            - if(article.commentable)
-                input(type="checkbox", name="commentable", value="true", checked="checked") Commentable
-            - else
-                input(type="checkbox", name="commentable", value="true") Commentable
-            - if(article.published)
-                input(type="checkbox", name="published", value="true", checked="checked") Published
-            - else
-                input(type="checkbox", name="published", value="true") Published
             input(type="text", name="title", placeholder="Title", value="#{article.title}")
             input(type="text", name="author", placeholder="Author", value="#{article.author}")
+            - if(article.commentable)
+                input(type="checkbox", id="commentable", name="commentable", value="true", checked="checked") 
+            - else
+                input(type="checkbox", id="commentable", name="commentable", value="true")
+            label(for="commentable") Commentable
+            - if(article.published)
+                input(type="checkbox", id="published", name="published", value="true", checked="checked")
+            - else
+                input(type="checkbox", id="published", name="published", value="true")
+            label(for="published") Published
             input(type="text", name="tags", placeholder="Tags", value="#{article.tags.join(\", \")}")
             textarea(name="text", placeholder="Text")= article._text
             input(type="submit")

@@ -486,6 +486,11 @@ body {
             }
         }
 
+        & > form > label {
+            display: inline-block;
+            cursor: pointer;
+        }
+
         & > form > input, 
         & > form > textarea {
             display: block;
@@ -504,11 +509,25 @@ body {
             cursor: text;
 
             &[type="submit"] {
-                cursor: pointer;
                 transition: background-color 0.5s;
                 &:hover {
                     background-color: lighten(@lightBackgroundColor, 10%);
                 }
+            }
+            &[type="radio"],
+            &[type="checkbox"] {
+                display: inline-block;
+                width: auto;
+                min-width: auto;
+                max-width: auto;
+                width: 20%;
+            }
+
+            &[type="radio"],
+            &[type="checkbox"],
+            &[type="submit"],
+            &[type="button"] {
+                cursor: pointer;
             }
         }
 

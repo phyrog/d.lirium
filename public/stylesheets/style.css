@@ -416,6 +416,10 @@ body > article > header > aside:first-of-type > ul li span:before {
 body > article > header > aside:first-of-type > ul li:last-of-type a[rel=tag]:after {
   content: "";
 }
+body > article > form > label {
+  display: inline-block;
+  cursor: pointer;
+}
 body > article > form > input,
 body > article > form > textarea {
   display: block;
@@ -435,12 +439,31 @@ body > article > form > textarea {
 }
 body > article > form > input[type="submit"],
 body > article > form > textarea[type="submit"] {
-  cursor: pointer;
   transition: background-color 0.5s;
 }
 body > article > form > input[type="submit"]:hover,
 body > article > form > textarea[type="submit"]:hover {
   background-color: #363636;
+}
+body > article > form > input[type="radio"],
+body > article > form > textarea[type="radio"],
+body > article > form > input[type="checkbox"],
+body > article > form > textarea[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  min-width: auto;
+  max-width: auto;
+  width: 20%;
+}
+body > article > form > input[type="radio"],
+body > article > form > textarea[type="radio"],
+body > article > form > input[type="checkbox"],
+body > article > form > textarea[type="checkbox"],
+body > article > form > input[type="submit"],
+body > article > form > textarea[type="submit"],
+body > article > form > input[type="button"],
+body > article > form > textarea[type="button"] {
+  cursor: pointer;
 }
 body > article > section.text + form {
   border-top: 1px solid #1c1c1c;

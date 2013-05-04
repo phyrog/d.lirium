@@ -2,7 +2,7 @@ extends layout
 
 block content
     - string path = slugPath(req.path, req.params, article.slug);
-    article
+    article(class="#{(article.published?\"\":\"unpub\")}")
         header
             nav
                 a(href="#{path}/prev", rel="prev", title="Earlier article") ≺
