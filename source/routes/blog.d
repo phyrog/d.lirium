@@ -65,7 +65,6 @@ void articleForm(HttpServerRequest req, HttpServerResponse res)
 
 void save(HttpServerRequest req, HttpServerResponse res)
 {
-    logInfo(commentable);
     bool published = cast(bool)("published" in req.form);
     bool commentable = cast(bool)("commentable" in req.form);
     string author = req.form["author"];
@@ -113,5 +112,11 @@ void comment(HttpServerRequest req, HttpServerResponse res)
         Comment com = Comment(BsonObjectID.generate(), req.form["author"], dlirium.data.Date(Clock.currTime()), req.form["text"]);
         addComment(req.params["slug"], com);
     }
+    redirectArticle(req, res, req.params["slug"]);
+}
+
+void rmComment(HttpServerRequest req, HttpServerResponse res)
+{
+    removeComment(req.params["slug"], req.params["cid"]);
     redirectArticle(req, res, req.params["slug"]);
 }
