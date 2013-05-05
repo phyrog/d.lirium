@@ -93,6 +93,12 @@ public void saveArticle(Article article)
     col_articles.update(Bson(q), bson);
 }
 
+public void removeArticle(string slug)
+{
+    Bson[string] q = ["slug": Bson(slug)];
+    col_articles.remove(Bson(q));
+}
+
 public void addComment(string slug, Comment comment)
 {
     Bson bson = comment.toBson();

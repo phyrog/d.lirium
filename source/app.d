@@ -50,6 +50,10 @@ shared static this()
           .any(dlirium.conf.blogPrefix ~ "/:slug/edit", &routes.user.authorized)
           .get(dlirium.conf.blogPrefix ~ "/:slug/edit", &routes.blog.articleForm)
           
+          .any(dlirium.conf.blogPrefix ~ "/:slug/delete", &routes.user.checkLogin)
+          .any(dlirium.conf.blogPrefix ~ "/:slug/delete", &routes.user.authorized)
+          .get(dlirium.conf.blogPrefix ~ "/:slug/delete", &routes.blog.del)
+          
           .get(dlirium.conf.blogPrefix ~ "/:slug/next", &routes.blog.next)
           .get(dlirium.conf.blogPrefix ~ "/:slug/prev", &routes.blog.prev)
           

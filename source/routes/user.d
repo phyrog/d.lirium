@@ -8,6 +8,9 @@ import dlirium.conf;
 import dlirium.auth.oauth2;
 import dlirium.db;
 import dlirium.data;
+import routes.blog : redirectArticle;
+
+import std.array;
 
 void auth(HttpServerRequest req, HttpServerResponse res)
 {
@@ -16,24 +19,30 @@ void auth(HttpServerRequest req, HttpServerResponse res)
     auto session = res.startSession();
     session["token"] = token;
     session["name"] = info["login"].get!string;
-    res.redirect("/");
+    if("ref" in req.query)
+        res.redirect(req.query["ref"]);
+    else
+        res.redirect("/");
 }
 
 void login(HttpServerRequest req, HttpServerResponse res)
 {
-    res.redirect(authProviders[req.params["provider"]].authLink);
+    res.redirect(authProviders[req.params["provider"]].authLink(req.query.get("ref", "")));
 }
 
 void logout(HttpServerRequest req, HttpServerResponse res)
 {
     res.terminateSession();
-    res.redirect("/");
+    res.redirect(req.query.get("ref", "/"));
 }
 
 void checkLogin(HttpServerRequest req, HttpServerResponse res)
 {
     if(req.session is null)
-        res.redirect("/");
+    {
+        if("slug" in req.params) redirectArticle(req, res, req.params["slug"]);
+        else res.redirect("/");
+    }
 }
 
 void authorized(HttpServerRequest req, HttpServerResponse res)
@@ -49,14 +58,18 @@ void authorized(HttpServerRequest req, HttpServerResponse res)
             logInfo(comment.id.toString());
             logInfo(user);
             if(comment.author != user && getArticle(slug).author != user)
-                res.redirect("/");
+                redirectArticle(req, res, slug);
         }
         else
         {
             Article article = getArticle(slug);
             if(article.author != user)
-                res.redirect("/");
+                redirectArticle(req, res, slug);
         }
+    }
+    else
+    {
+        res.redirect("/");
     }
 }
 

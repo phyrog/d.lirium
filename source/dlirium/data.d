@@ -23,9 +23,12 @@ struct OAuth2Provider
     string scopes;
     string[string] headers;
 
-    @property string authLink()
+    string authLink(string referer = "")
     {
-        return authCodeRequestURL ~ "?client_id=" ~ client_id ~ "&response_type=code&scope=" ~ scopes ~ "&redirect_uri=http://" ~ dlirium.conf.host ~ "/auth/" ~ provider_name;
+        string q;
+        if(referer != "")
+            q = "?ref=" ~ referer;
+        return authCodeRequestURL ~ "?client_id=" ~ client_id ~ "&response_type=code&scope=" ~ scopes ~ "&redirect_uri=http://" ~ dlirium.conf.host ~ "/auth/" ~ provider_name ~ q;
     }
 }
 

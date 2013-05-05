@@ -105,6 +105,12 @@ void save(HttpServerRequest req, HttpServerResponse res)
     redirectArticle(req, res, article);
 }
 
+void del(HttpServerRequest req, HttpServerResponse res)
+{
+    removeArticle(req.params["slug"]);
+    res.redirect("/");
+}
+
 void comment(HttpServerRequest req, HttpServerResponse res)
 {
     if("text" in req.form && req.form["text"] != "")
