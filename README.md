@@ -6,6 +6,9 @@ d.lirium is a personal blog software using vibe.d and the D programming language
 ## Implemented Features
 
 *   MongoDB backend
+*   Authentication via OAuth
+    *   Github
+*   Basic Authorization
 *   Creating articles
 *   Editing articles
 *   Writing comments
@@ -17,8 +20,7 @@ d.lirium is a personal blog software using vibe.d and the D programming language
 *   Deleting articles
 *   Authentication via OAuth
     *   Google
-    *   Github
-*   Authorization and permissions
+*   Permissions
 *   Short user profiles
 *   Static pages
     *   About me
