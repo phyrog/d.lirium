@@ -21,14 +21,14 @@ void renderArticle(HttpServerRequest req, HttpServerResponse res, Article articl
 
 void redirectArticle(HttpServerRequest req, HttpServerResponse res, Article article)
 {
-    if("tag" in req.params) res.redirect("/tag/" ~ req.params["tag"] ~ "/" ~ article.slug);
-    else res.redirect("/" ~ article.slug);
+    if("tag" in req.params) res.redirect(dlirium.conf.blogPrefix ~ "/tag/" ~ req.params["tag"] ~ "/" ~ article.slug);
+    else res.redirect(dlirium.conf.blogPrefix ~ "/" ~ article.slug);
 }
 
 void redirectArticle(HttpServerRequest req, HttpServerResponse res, string slug)
 {
-    if("tag" in req.params) res.redirect("/tag/" ~ req.params["tag"] ~ "/" ~ slug);
-    else res.redirect("/" ~ slug);
+    if("tag" in req.params) res.redirect(dlirium.conf.blogPrefix ~ "/tag/" ~ req.params["tag"] ~ "/" ~ slug);
+    else res.redirect(dlirium.conf.blogPrefix ~ "/" ~ slug);
 }
 
 void index(HttpServerRequest req, HttpServerResponse res)

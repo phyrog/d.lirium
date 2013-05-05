@@ -17,16 +17,20 @@ shared static this()
     /+
      + Blog routing configuration
      +/
-    router.get(dlirium.conf.blogPrefix ~ "/", &routes.blog.index)
+    router.get("/", staticRedirect(dlirium.conf.blogPrefix))
+          .get(dlirium.conf.blogPrefix, &routes.blog.index)
 
-          .any(dlirium.conf.blogPrefix ~ "/create", &routes.user.checkLogin)
-          .get(dlirium.conf.blogPrefix ~ "/create", &routes.blog.articleForm)
+          .any("/create", &routes.user.checkLogin)
+          .get("/create", &routes.blog.articleForm)
           
-          .any(dlirium.conf.blogPrefix ~ "/save", &routes.user.checkLogin)
-          .post(dlirium.conf.blogPrefix ~ "/save", &routes.blog.save)
+          .any("/save", &routes.user.checkLogin)
+          .post("/save", &routes.blog.save)
           
-          .get(dlirium.conf.blogPrefix ~ "/login/:provider", &routes.user.login)
-          .get(dlirium.conf.blogPrefix ~ "/auth/:provider", &routes.user.auth)
+          .get("/login/:provider", &routes.user.login)
+          .get("/auth/:provider", &routes.user.auth)
+          
+          .get("/logout", &routes.user.checkLogin)
+          .get("/logout", &routes.user.logout)
 
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag", &routes.blog.tag)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug", &routes.blog.show)
