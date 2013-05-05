@@ -33,6 +33,6 @@ html
         a(href="http://redis.io") redis
         a(href="#") Impressum
         - if(req.session !is null)
-            a(href="/logout") Logout
+            a(href="/logout") Logout (#{req.session["name"]})
         - else
             a(href="/login/github") Login
