@@ -1,6 +1,10 @@
 extends layout
 
 block content
+    :javascript
+        $(function() {
+            $("#text").autosize({append: "\n"});
+        });
     - string path = slugPath(req.path, req.params, article.slug);
     article(class="#{(article.published?\"\":\"unpub\")}")
         header
@@ -24,11 +28,13 @@ block content
                 section.comment(id="#{comment.id.toString()}")
                     header
                         a(href="/user/#{comment.author}",rel="author")= comment.author
-                        a(href="#{path}/#{comment.id.toString()}/remove") [Delete]
+                        - if(req.session !is null && (req.session["name"] == comment.author || req.session["name"] == article.author))
+                            a(href="#{path}/#{comment.id.toString()}/remove") [Delete]
                         - string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
                         time= comDate
                     | #{comment._text}
-            form(action="#{path}/comment", method="post")
-                input(type="text", name="author", placeholder="Author")
-                textarea(name="text", placeholder="Text")
-                input(type="submit")
+            - if(req.session !is null && req.session.isKeySet("name"))
+                form(action="#{path}/comment", method="post")
+                    textarea(name="text", id="text", placeholder="Text")
+                    input(type="submit")
+

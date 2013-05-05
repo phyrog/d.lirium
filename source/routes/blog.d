@@ -67,7 +67,7 @@ void save(HttpServerRequest req, HttpServerResponse res)
 {
     bool published = cast(bool)("published" in req.form);
     bool commentable = cast(bool)("commentable" in req.form);
-    string author = req.form["author"];
+    string author = req.session["name"];
     string title = req.form["title"];
     string slug = makeSlugFromHeader(title);
     string[] tags = req.form["tags"].split(",").map!(a => strip(a))().array();
@@ -75,9 +75,9 @@ void save(HttpServerRequest req, HttpServerResponse res)
 
     Article article;
 
-    if(req.form["slug"] != "") 
+    if("slug" in req.params) 
     {
-        article = getArticle(req.form["slug"]);
+        article = getArticle(req.params["slug"]);
         article.published = published;
         article.commentable = commentable;
         article.author = author;
@@ -107,9 +107,9 @@ void save(HttpServerRequest req, HttpServerResponse res)
 
 void comment(HttpServerRequest req, HttpServerResponse res)
 {
-    if("author" in req.form && req.form["author"] != "" && "text" in req.form && req.form["text"] != "")
+    if("text" in req.form && req.form["text"] != "")
     {
-        Comment com = Comment(BsonObjectID.generate(), req.form["author"], dlirium.data.Date(Clock.currTime()), req.form["text"]);
+        Comment com = Comment(BsonObjectID.generate(), req.session["name"], dlirium.data.Date(Clock.currTime()), req.form["text"]);
         addComment(req.params["slug"], com);
     }
     redirectArticle(req, res, req.params["slug"]);

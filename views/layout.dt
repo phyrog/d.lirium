@@ -4,18 +4,8 @@ html
     head
         title= pageTitle
         link(rel='stylesheet', href='/stylesheets/style.css')
-        script(type='text/javascript', src='/scripts/jquery-1.8.3.min.js')
-        script(type='text/javascript')
-            $(function() {
-                $(window).scroll(function() {
-                    if(window.pageYOffset > 100) {
-                        $("article > header > nav").css("top", "-2.25em").css("border", "2px solid rgba(255, 255, 255, 0.2)").css("border-top", "none");
-                    }
-                    else {
-                        $("article > header > nav").css("top", "0").css("border", "2px solid rgba(255, 255, 255, 0)").css("border-top", "none");
-                    }
-                });
-            });
+        script(type='text/javascript', src='/scripts/jquery-2.0.0.min.js')
+        script(type='text/javascript', src='/scripts/jquery.autosize-min.js')
     body
         h1= pageTitle
         nav
@@ -42,4 +32,7 @@ html
         a(href="http://mongodb.org") MongoDB
         a(href="http://redis.io") redis
         a(href="#") Impressum
-        a(href="/login/github") Login
+        - if(req.session !is null)
+            a(href="/logout") Logout
+        - else
+            a(href="/login/github") Login

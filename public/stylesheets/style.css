@@ -422,6 +422,8 @@ body > article > form > label {
 }
 body > article > form > textarea {
   font-family: "Source Code Pro";
+  vertical-align: top;
+  transition: height 0.2s;
 }
 body > article > form > input,
 body > article > form > textarea {

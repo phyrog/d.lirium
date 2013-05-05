@@ -6,6 +6,8 @@ import vibe.db.mongo.mongo;
 import vibe.data.bson;
 import vibe.data.json;
 import dlirium.data;
+import std.algorithm;
+import std.array;
 
 private MongoClient     db_connection;
 private MongoCollection col_articles;
@@ -98,8 +100,22 @@ public void addComment(string slug, Comment comment)
     col_articles.update(q, Bson(["$push": Bson(["comments": bson])]));
 }
 
+public Comment getComment(string slug, string cid)
+{
+    Bson[string] q = ["slug": Bson(slug), "comments._id": Bson(BsonObjectID.fromString(cid))];
+    auto res = col_articles.find(q, Bson(["comments": Bson(1)]));
+    if(!res.empty) return (cast(Bson[])res.front["comments"]).map!(a => Comment.fromBson(a))().filter!(a => a.id.toString() == cid)().front;
+    else return Comment();
+}
+
 public void removeComment(string slug, string id)
 {
     Bson[string] q = ["slug": Bson(slug)];
     col_articles.update(q, Bson(["$pull": Bson(["comments": Bson(["_id": Bson(BsonObjectID.fromString(id))])])]));
+}
+
+public void addUser(string token, string provider, string username, string email)
+{
+    Bson[string] bson = ["provider": Bson(provider), "name": Bson(username), "email": Bson(email), "token": Bson(token)];
+    col_users.insert(Bson(bson));
 }
