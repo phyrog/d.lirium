@@ -49,6 +49,10 @@ shared static this()
           .any(dlirium.conf.blogPrefix ~ "/:slug/edit", &routes.user.checkLogin)
           .any(dlirium.conf.blogPrefix ~ "/:slug/edit", &routes.user.authorized)
           .get(dlirium.conf.blogPrefix ~ "/:slug/edit", &routes.blog.articleForm)
+
+          .any(dlirium.conf.blogPrefix ~ "/:slug/save", &routes.user.checkLogin)
+          .any(dlirium.conf.blogPrefix ~ "/:slug/save", &routes.user.authorized)
+          .post(dlirium.conf.blogPrefix ~ "/:slug/save", &routes.blog.save)
           
           .any(dlirium.conf.blogPrefix ~ "/:slug/delete", &routes.user.checkLogin)
           .any(dlirium.conf.blogPrefix ~ "/:slug/delete", &routes.user.authorized)

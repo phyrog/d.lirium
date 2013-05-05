@@ -6,7 +6,7 @@ block content
             $("#text").autosize({append: "\n"});
         });
     article
-        form(action="/save", method="post")
+        form(action="#{\"slug\" in req.params ? blogPrefix ~ \"/\" ~ req.params[\"slug\"] : ""}/save", method="post")
             input(type="text", name="title", placeholder="Title", value="#{article.title}")
             - if(article.commentable)
                 input(type="checkbox", id="commentable", name="commentable", value="true", checked="checked") 
