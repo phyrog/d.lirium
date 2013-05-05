@@ -5,10 +5,29 @@ import dlirium.textfilter.markdown;
 import std.algorithm : map;
 import std.array : array, Appender;
 import std.conv : to;
+import dlirium.conf;
 
 import vibe.core.log;
 
 public import std.datetime;
+
+struct OAuth2Provider
+{
+    string provider_name;
+    string client_id;
+    string client_secret;
+    
+    string authCodeRequestURL;
+    string authTokenRequestURL;
+    string userDataRequestURL;
+    string scopes;
+    string[string] headers;
+
+    @property string authLink()
+    {
+        return authCodeRequestURL ~ "?client_id=" ~ client_id ~ "&response_type=code&scope=" ~ scopes ~ "&redirect_uri=http://" ~ dlirium.conf.host ~ "/auth/" ~ provider_name;
+    }
+}
 
 struct Date
 {

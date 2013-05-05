@@ -42,4 +42,4 @@ html
         a(href="http://mongodb.org") MongoDB
         a(href="http://redis.io") redis
         a(href="#") Impressum
-        a(href="/login") Login
+        a(href="/login/github") Login

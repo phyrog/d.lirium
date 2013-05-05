@@ -8,6 +8,7 @@ import routes.user;
 shared static this()
 { 
     auto settings = new HttpServerSettings;
+    settings.sessionStore = new MemorySessionStore;
     settings.errorPageHandler = toDelegate(&routes.error.handler);
     settings.port = dlirium.conf.portNo;
 
@@ -20,6 +21,8 @@ shared static this()
 
           .get(dlirium.conf.blogPrefix ~ "/create", &routes.blog.articleForm)
           .post(dlirium.conf.blogPrefix ~ "/save", &routes.blog.save)
+          .get(dlirium.conf.blogPrefix ~ "/login/:provider", &routes.user.login)
+          .get(dlirium.conf.blogPrefix ~ "/auth/:provider", &routes.user.auth)
 
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag", &routes.blog.tag)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug", &routes.blog.show)
