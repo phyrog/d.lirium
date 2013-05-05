@@ -33,7 +33,9 @@ void redirectArticle(HttpServerRequest req, HttpServerResponse res, string slug)
 
 void index(HttpServerRequest req, HttpServerResponse res)
 {
-    renderArticle(req, res, getArticle());
+    Article article = getArticle();
+    if(article.slug != "") renderArticle(req, res, article);
+    else res.writeBody("Sorry, nix da.");
 }
 
 void show(HttpServerRequest req, HttpServerResponse res)
