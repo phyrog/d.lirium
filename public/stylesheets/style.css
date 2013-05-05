@@ -420,6 +420,9 @@ body > article > form > label {
   display: inline-block;
   cursor: pointer;
 }
+body > article > form > textarea {
+  font-family: "Source Code Pro";
+}
 body > article > form > input,
 body > article > form > textarea {
   display: block;
