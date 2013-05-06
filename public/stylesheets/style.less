@@ -48,8 +48,13 @@ html
 @headingFont: "URW Gothic L";
 
 html {
+    min-height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
+    background-color: @headerBackground; /* gradient */
+    background: linear-gradient(@headerBackground, @headerBackground 6.5em, @baseColor 6.5em, @baseColor);
+    font-size: 16px;
 }
 
 a[rel=author] {
@@ -60,34 +65,42 @@ a[rel=author] {
 }
 
 body {
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
+    top: 6em;
     margin: 0;
     padding: 3em 30% 1em 30%;
     box-sizing: border-box;
     background-color: @baseColor;
 
+    & > * {
+        margin-top: -3em;
+    }
+
     & > h1 {
         position: absolute;
         display: block;
-        width: 100%;
-        left: 0;
+        width: 25em;
+        left: 50%;
         top: 0;
-        margin: 0;
-        padding: 0.2em 75% 0.2em 75%;
+        margin: -1.5em 0 0 -12.5em;
+        padding: 0.2em 2em 0.2em 0;
         box-sizing: border-box;
-        background-color: @headerBackground;
         color: @headerColor;
         font-family: @monospaceFont;
+        font-size: 2em;
     }
     
     & > nav {
         
         position: absolute;
         display: block;
+        width: 54em;
         top: 0;
-        right: 30%;
+        left: 50%;
+        margin-left: -25em;
+        text-align: right;
 
         * {
             display: inline-block;
@@ -110,7 +123,12 @@ body {
     }
 
     & > article {
-        
+
+        position: relative;
+        width: 50em;
+        left: 50%;
+        margin-left: -25em;
+
         padding: 2em;
         color: @textColor;
         background-color: @articleBackground;
@@ -118,7 +136,7 @@ body {
         & > header {
             & > aside {
                 position: absolute;
-                top: 3.5em;
+                top: 1em;
                 padding: 0;
                 font-family: @monospaceFont;
 
@@ -165,10 +183,12 @@ body {
                     transition: color 0.2s;
 
                     &[rel=next] {
-                        left: 70%;
+                        right: 50%;
+                        margin-right: -8em;
                     }
                     &[rel=prev] {
-                        right: 70%;
+                        left: 50%;
+                        margin-left: -8em;
                     }
                     
                     &:hover {
