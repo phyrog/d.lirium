@@ -15,6 +15,7 @@ html
             header
                 nav
                     a
+                    a
                 aside
                     time
                         span
@@ -33,13 +34,18 @@ html
             form
                 textarea
                 input
+        a
+        a
 */
 
 @baseColor: #EFEFEF;
 @headerColor: darken(@baseColor, 10%);
 @headerBackground: darken(@baseColor, 60%);
+@articleBackground: darken(@baseColor, 5%);
 @navLinkColor: @headerColor;
+@textColor: @headerBackground;
 @monospaceFont: "Source Code Pro";
+@headingFont: "URW Gothic L";
 
 html {
     margin: 0;
@@ -50,7 +56,6 @@ body {
     position: relative;
     display: block;
     width: 100%;
-    min-width: 50em;
     margin: 0;
     padding: 3em 25% 1em 25%;
     box-sizing: border-box;
@@ -98,17 +103,99 @@ body {
     }
 
     & > article {
-        background-color: red;
+        
+        padding: 2em;
+        color: @textColor;
+        background-color: @articleBackground;
 
         & > header {
             & > aside {
-                & > ul {
-                    position: absolute;
-                    left: 75%;
-                    display: block;
+                position: absolute;
+                top: 3.5em;
+                padding: 0;
+                font-family: @monospaceFont;
 
+                & > a[rel=author] {
+                    color: @textColor;
+                    text-decoration: none;
+                }
+
+                & > ul {
+                    display: inline-block;
+                    margin: 0;
+                    padding: 1em;
+
+                    & > li {
+                        
+                        display: inline-block;
+
+                        & > a {
+                            color: darken(@articleBackground, 20%);
+                            text-decoration: none;
+                            padding: 0.3em;
+                            transition: color 0.2s;
+
+                            &:before {
+                                padding-right: 0.1em;
+                                color: @textColor;
+                                content: "*";
+                            }
+
+                            &:hover {
+                                color: darken(@articleBackground, 30%);
+                            }
+                        }
+                    }
                 }
             }
+
+            nav {
+                & > a {
+                    position: absolute;
+                    font-size: 4em;
+                    color: @articleBackground;
+                    text-decoration: none;
+                    transition: color 0.2s;
+
+                    &[rel=next] {
+                        left: 75%;
+                    }
+                    &[rel=prev] {
+                        right: 75%;
+                    }
+                    
+                    &:hover {
+                        color: darken(@articleBackground, 20%);
+                    }
+                }
+            }
+
+            & > h1 {
+                font-family: @headingFont;
+            }
+        }
+
+        & > section.text {
+            h2, h3, h4, h5, h6 {
+                & > a {
+                    color: @textColor;
+                    font-family: @headingFont;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    & > a {
+        display: inline-block;
+        padding: 0.5em;
+        color: darken(@articleBackground, 10%);
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover, &:last-of-type {
+            color: darken(@articleBackground, 30%);
         }
     }
 }

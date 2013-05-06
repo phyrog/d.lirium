@@ -15,6 +15,7 @@ html
             header
                 nav
                     a
+                    a
                 aside
                     time
                         span
@@ -33,6 +34,8 @@ html
             form
                 textarea
                 input
+        a
+        a
 */
 html {
   margin: 0;
@@ -42,7 +45,6 @@ body {
   position: relative;
   display: block;
   width: 100%;
-  min-width: 50em;
   margin: 0;
   padding: 3em 25% 1em 25%;
   box-sizing: border-box;
@@ -84,10 +86,79 @@ body > nav a:hover {
   color: #ffffff;
 }
 body > article {
-  background-color: red;
+  padding: 2em;
+  color: #565656;
+  background-color: #e2e2e2;
+}
+body > article > header > aside {
+  position: absolute;
+  top: 3.5em;
+  padding: 0;
+  font-family: "Source Code Pro";
+}
+body > article > header > aside > a[rel=author] {
+  color: #565656;
+  text-decoration: none;
 }
 body > article > header > aside > ul {
+  display: inline-block;
+  margin: 0;
+  padding: 1em;
+}
+body > article > header > aside > ul > li {
+  display: inline-block;
+}
+body > article > header > aside > ul > li > a {
+  color: #afafaf;
+  text-decoration: none;
+  padding: 0.3em;
+  transition: color 0.2s;
+}
+body > article > header > aside > ul > li > a:before {
+  padding-right: 0.1em;
+  color: #565656;
+  content: "*";
+}
+body > article > header > aside > ul > li > a:hover {
+  color: #969696;
+}
+body > article > header nav > a {
   position: absolute;
+  font-size: 4em;
+  color: #e2e2e2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+body > article > header nav > a[rel=next] {
   left: 75%;
-  display: block;
+}
+body > article > header nav > a[rel=prev] {
+  right: 75%;
+}
+body > article > header nav > a:hover {
+  color: #afafaf;
+}
+body > article > header > h1 {
+  font-family: "URW Gothic L";
+}
+body > article > section.text h2 > a,
+body > article > section.text h3 > a,
+body > article > section.text h4 > a,
+body > article > section.text h5 > a,
+body > article > section.text h6 > a {
+  color: #565656;
+  font-family: "URW Gothic L";
+  text-decoration: none;
+}
+body > a {
+  display: inline-block;
+  padding: 0.5em;
+  color: #c9c9c9;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+body > a:hover,
+body > a:last-of-type {
+  color: #969696;
 }
