@@ -166,75 +166,7 @@ body {
             margin-right: 0.5em;
         }
     }
-    & > aside.admin {
-        position: fixed;
-        right: -5.8em;
-        padding: 0.5em;
-        font-family: @monospaceFont;
-        background-color: @darkBackgroundColor;
-        border-top-left-radius: 0.5em;
-        border-bottom-left-radius: 0.5em;
-
-        -webkit-transition: all 0.5s;
-
-        &:hover {
-            right: 0em;
-        }
-
-        &:before {
-            display: block;
-            position: absolute;
-            top: -1.5em;
-            right: -0.5em;
-            border-right: 0.5em solid @darkBackgroundColor;
-            border-bottom: 0.5em solid @darkBackgroundColor;
-            height: 1.5em;
-            width: 1.5em;
-            content: "\a0";
-            border-bottom-right-radius: 1.5em;
-        }
-
-        &:after {
-            display: block;
-            position: absolute;
-            bottom: -1.5em;
-            right: -0.5em;
-            border-right: 0.5em solid @darkBackgroundColor;
-            border-top: 0.5em solid @darkBackgroundColor;
-            height: 1.5em;
-            width: 1.5em;
-            content: "\a0";
-            border-top-right-radius: 1.5em;
-        }
-
-        a {
-            display: block;
-            height: 1em;
-            width: 5.5em;
-            color: @primaryFontColor;
-            font-weight: bold;
-            padding: 0.5em;
-            margin-bottom: 0.5em;
-            background-color: @lightBackgroundColor;
-            border-radius: 0.25em;
-            border: 2px solid darken(@darkBackgroundColor, 2.5%);
-            text-transform: lowercase;
-
-            &:last-of-type {
-                margin-bottom: 0;
-            }
-
-            &:first-letter {
-                color: @secondaryFontColor;
-                letter-spacing: 0.2em;
-            }
-
-            &:hover {
-                background-color: lighten(@lightBackgroundColor, 5%);
-            }
-        }
-    }
-
+    
     & > nav {
         position: absolute;
         width: 10em;

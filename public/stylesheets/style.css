@@ -154,66 +154,6 @@ body > a:before {
   content: ">";
   margin-right: 0.5em;
 }
-body > aside.admin {
-  position: fixed;
-  right: -5.8em;
-  padding: 0.5em;
-  font-family: "Source Code Pro";
-  background-color: #121212;
-  border-top-left-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  -webkit-transition: all 0.5s;
-}
-body > aside.admin:hover {
-  right: 0em;
-}
-body > aside.admin:before {
-  display: block;
-  position: absolute;
-  top: -1.5em;
-  right: -0.5em;
-  border-right: 0.5em solid #121212;
-  border-bottom: 0.5em solid #121212;
-  height: 1.5em;
-  width: 1.5em;
-  content: "\a0";
-  border-bottom-right-radius: 1.5em;
-}
-body > aside.admin:after {
-  display: block;
-  position: absolute;
-  bottom: -1.5em;
-  right: -0.5em;
-  border-right: 0.5em solid #121212;
-  border-top: 0.5em solid #121212;
-  height: 1.5em;
-  width: 1.5em;
-  content: "\a0";
-  border-top-right-radius: 1.5em;
-}
-body > aside.admin a {
-  display: block;
-  height: 1em;
-  width: 5.5em;
-  color: #dadada;
-  font-weight: bold;
-  padding: 0.5em;
-  margin-bottom: 0.5em;
-  background-color: #1c1c1c;
-  border-radius: 0.25em;
-  border: 2px solid #0c0c0c;
-  text-transform: lowercase;
-}
-body > aside.admin a:last-of-type {
-  margin-bottom: 0;
-}
-body > aside.admin a:first-letter {
-  color: #ff8700;
-  letter-spacing: 0.2em;
-}
-body > aside.admin a:hover {
-  background-color: #292929;
-}
 body > nav {
   position: absolute;
   width: 10em;
