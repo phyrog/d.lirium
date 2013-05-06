@@ -34,7 +34,7 @@ void redirectArticle(HttpServerRequest req, HttpServerResponse res, string slug)
 void index(HttpServerRequest req, HttpServerResponse res)
 {
     Article article = getArticle();
-    if(article.slug != "") renderArticle(req, res, article);
+    if(article.slug != "") redirectArticle(req, res, article);
     else res.writeBody("Sorry, nix da.");
 }
 
@@ -46,7 +46,7 @@ void show(HttpServerRequest req, HttpServerResponse res)
 void tag(HttpServerRequest req, HttpServerResponse res)
 {
     Article article = getLatestArticleByFilter("tags", req.params["tag"].translate([' ': '+']));
-    if(article != Article()) renderArticle(req, res, article);
+    if(article != Article()) redirectArticle(req, res, article);
     else res.redirect("/");
 }
 
