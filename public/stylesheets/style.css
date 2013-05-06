@@ -41,6 +41,10 @@ html {
   margin: 0;
   padding: 0;
 }
+a[rel=author]:before {
+  color: #898989;
+  content: "#";
+}
 body {
   position: relative;
   display: block;
@@ -88,7 +92,7 @@ body > nav a:hover {
 body > article {
   padding: 2em;
   color: #565656;
-  background-color: #e2e2e2;
+  background-color: #e5e5e5;
 }
 body > article > header > aside {
   position: absolute;
@@ -109,7 +113,7 @@ body > article > header > aside > ul > li {
   display: inline-block;
 }
 body > article > header > aside > ul > li > a {
-  color: #afafaf;
+  color: #b2b2b2;
   text-decoration: none;
   padding: 0.3em;
   transition: color 0.2s;
@@ -120,12 +124,12 @@ body > article > header > aside > ul > li > a:before {
   content: "*";
 }
 body > article > header > aside > ul > li > a:hover {
-  color: #969696;
+  color: #989898;
 }
 body > article > header nav > a {
   position: absolute;
   font-size: 4em;
-  color: #e2e2e2;
+  color: #e5e5e5;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -136,7 +140,7 @@ body > article > header nav > a[rel=prev] {
   right: 75%;
 }
 body > article > header nav > a:hover {
-  color: #afafaf;
+  color: #b2b2b2;
 }
 body > article > header > h1 {
   font-family: "URW Gothic L";
@@ -156,7 +160,30 @@ body > article > section.text + form {
   border-top: 2px dotted #efefef;
 }
 body > article > section.comment {
-  padding: 0.5em;
+  margin-bottom: 1em;
+  padding: 0.5em 10% 0.5em 10%;
+}
+body > article > section.comment > header {
+  margin-bottom: 0.5em;
+  font-family: "Source Code Pro";
+  text-transform: lowercase;
+}
+body > article > section.comment > header a {
+  padding: 0.2em;
+  text-decoration: none;
+  color: #969696;
+  transition: color 0.2s;
+}
+body > article > section.comment > header a:hover,
+body > article > section.comment > header a[rel=author] {
+  color: #565656;
+}
+body > article > section.comment > header time {
+  position: absolute;
+  display: inline-block;
+  right: 31%;
+  padding: 0.2em;
+  letter-spacing: 0.1em;
 }
 body > article > form {
   display: block;
@@ -177,12 +204,12 @@ body > article > form > input {
 body > a {
   display: inline-block;
   padding: 0.5em;
-  color: #c9c9c9;
+  color: #cbcbcb;
   text-transform: uppercase;
   text-decoration: none;
   transition: color 0.2s;
 }
 body > a:hover,
 body > a:last-of-type {
-  color: #969696;
+  color: #989898;
 }

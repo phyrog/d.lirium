@@ -41,7 +41,7 @@ html
 @baseColor: #EFEFEF;
 @headerColor: darken(@baseColor, 10%);
 @headerBackground: darken(@baseColor, 60%);
-@articleBackground: darken(@baseColor, 5%);
+@articleBackground: darken(@baseColor, 4%);
 @navLinkColor: @headerColor;
 @textColor: @headerBackground;
 @monospaceFont: "Source Code Pro";
@@ -50,6 +50,13 @@ html
 html {
     margin: 0;
     padding: 0;
+}
+
+a[rel=author] {
+    &:before {
+        color: lighten(@textColor, 20%);
+        content: "#";
+    }
 }
 
 body {
@@ -192,7 +199,34 @@ body {
         }
 
         & > section.comment {
-            padding: 0.5em;
+            margin-bottom: 1em;
+            padding: 0.5em 10% 0.5em 10%;
+
+            & > header {
+                margin-bottom: 0.5em;
+                font-family: @monospaceFont;
+                text-transform: lowercase;
+
+                a {
+                    padding: 0.2em;
+                    text-decoration: none;
+                    color: lighten(@textColor, 25%);
+                    transition: color 0.2s;
+
+                    &:hover,
+                    &[rel=author] {
+                        color: @textColor;
+                    }
+                }
+
+                time {
+                    position: absolute;
+                    display: inline-block;
+                    right: 31%;
+                    padding: 0.2em;
+                    letter-spacing: 0.1em;
+                }
+            }
         }
 
         & > form {
