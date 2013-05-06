@@ -17,9 +17,9 @@ shared static this()
     /+
      + Blog routing configuration
      +/
-    router.get("/", staticRedirect(dlirium.conf.blogPrefix))
-          .get(dlirium.conf.blogPrefix, &routes.blog.index)
-
+    router.get(dlirium.conf.blogPrefix, &routes.blog.index)
+          .get("/", staticRedirect(dlirium.conf.blogPrefix))
+          
           .any("/create", &routes.user.checkLogin)
           .get("/create", &routes.blog.articleForm)
           
