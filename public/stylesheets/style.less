@@ -645,57 +645,11 @@ body {
                 }
             }
 
-            form {
-                display: inline-block;
-                box-sizing: border-box;
-                width: 50%;
-                vertical-align: top;
-                padding: 1em;
-
-                &:last-of-type {
-                    border-left: none;
-                }
-
-                &.google {
-                    input {
-                    }
-                }
-
-                input {
-                    display: block;
-                    box-sizing: border-box;
-                    background-color: @lightBackgroundColor;
-                    border: 2px solid darken(@darkBackgroundColor, 2.5%);
-                    margin: auto;
-                    margin-bottom: 1em;
-                    padding: 0.5em;
-                    width: 100%;
-                    color: @primaryFontColor;
-
-                    &[type=submit] {
-                        padding: 1em;
-                    }
-
-                    &:last-of-type {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-
             a {
                 color: @secondaryFontColor;
 
                 &:hover {
                     text-decoration: underline;
-                }
-            }
-
-            &.edit {
-                font-family: @monospaceFont;
-                font-weight: normal;
-                white-space: pre;
-                &:focus {
-                    outline: none;
                 }
             }
         }

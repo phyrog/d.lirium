@@ -577,46 +577,11 @@ body > article > section.text > ul > li {
   padding: 0.3em;
   color: #d0d0d0;
 }
-body > article > section.text form {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 50%;
-  vertical-align: top;
-  padding: 1em;
-}
-body > article > section.text form:last-of-type {
-  border-left: none;
-}
-body > article > section.text form input {
-  display: block;
-  box-sizing: border-box;
-  background-color: #1c1c1c;
-  border: 2px solid #0c0c0c;
-  margin: auto;
-  margin-bottom: 1em;
-  padding: 0.5em;
-  width: 100%;
-  color: #dadada;
-}
-body > article > section.text form input[type=submit] {
-  padding: 1em;
-}
-body > article > section.text form input:last-of-type {
-  margin-bottom: 0;
-}
 body > article > section.text a {
   color: #ff8700;
 }
 body > article > section.text a:hover {
   text-decoration: underline;
-}
-body > article > section.text.edit {
-  font-family: "Source Code Pro";
-  font-weight: normal;
-  white-space: pre;
-}
-body > article > section.text.edit:focus {
-  outline: none;
 }
 body > article > section.comment {
   padding: 4em;
