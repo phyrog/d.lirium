@@ -70,9 +70,11 @@ body {
     width: 100%;
     top: 6em;
     margin: 0;
-    padding: 3em 30% 1em 30%;
+    padding: 3em 0 1em 0;
     box-sizing: border-box;
     background-color: @baseColor;
+    text-align: center;
+    overflow-x: hidden;
 
     & > * {
         margin-top: -3em;
@@ -90,6 +92,7 @@ body {
         color: @headerColor;
         font-family: @monospaceFont;
         font-size: 2em;
+        text-align: left;
     }
     
     & > nav {
@@ -128,10 +131,12 @@ body {
         width: 50em;
         left: 50%;
         margin-left: -25em;
+        box-sizing: border-box;
 
         padding: 2em;
         color: @textColor;
         background-color: @articleBackground;
+        text-align: left;
 
         & > header {
             & > aside {
@@ -184,11 +189,11 @@ body {
 
                     &[rel=next] {
                         right: 50%;
-                        margin-right: -8em;
+                        margin-right: -7.2em;
                     }
                     &[rel=prev] {
                         left: 50%;
-                        margin-left: -8em;
+                        margin-left: -7.2em;
                     }
                     
                     &:hover {
@@ -223,7 +228,7 @@ body {
 
         & > section.comment {
             margin-bottom: 1em;
-            padding: 0.5em 10% 0.5em 10%;
+            padding: 0.5em 5em 0.5em 5em;
             text-align: justify;
 
             & > header {
@@ -246,7 +251,7 @@ body {
                 time {
                     position: absolute;
                     display: inline-block;
-                    right: 31%;
+                    right: 6em;
                     padding: 0.2em;
                     letter-spacing: 0.1em;
                 }

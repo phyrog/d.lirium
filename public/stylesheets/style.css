@@ -58,9 +58,11 @@ body {
   width: 100%;
   top: 6em;
   margin: 0;
-  padding: 3em 30% 1em 30%;
+  padding: 3em 0 1em 0;
   box-sizing: border-box;
   background-color: #efefef;
+  text-align: center;
+  overflow-x: hidden;
 }
 body > * {
   margin-top: -3em;
@@ -77,6 +79,7 @@ body > h1 {
   color: #d6d6d6;
   font-family: "Source Code Pro";
   font-size: 2em;
+  text-align: left;
 }
 body > nav {
   position: absolute;
@@ -108,9 +111,11 @@ body > article {
   width: 50em;
   left: 50%;
   margin-left: -25em;
+  box-sizing: border-box;
   padding: 2em;
   color: #565656;
   background-color: #e5e5e5;
+  text-align: left;
 }
 body > article > header > aside {
   position: absolute;
@@ -153,11 +158,11 @@ body > article > header nav > a {
 }
 body > article > header nav > a[rel=next] {
   right: 50%;
-  margin-right: -8em;
+  margin-right: -7.2em;
 }
 body > article > header nav > a[rel=prev] {
   left: 50%;
-  margin-left: -8em;
+  margin-left: -7.2em;
 }
 body > article > header nav > a:hover {
   color: #b2b2b2;
@@ -185,7 +190,7 @@ body > article > section.text + form {
 }
 body > article > section.comment {
   margin-bottom: 1em;
-  padding: 0.5em 10% 0.5em 10%;
+  padding: 0.5em 5em 0.5em 5em;
   text-align: justify;
 }
 body > article > section.comment > header {
@@ -206,7 +211,7 @@ body > article > section.comment > header a[rel=author] {
 body > article > section.comment > header time {
   position: absolute;
   display: inline-block;
-  right: 31%;
+  right: 6em;
   padding: 0.2em;
   letter-spacing: 0.1em;
 }
