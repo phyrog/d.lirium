@@ -64,7 +64,7 @@ body {
     display: block;
     width: 100%;
     margin: 0;
-    padding: 3em 25% 1em 25%;
+    padding: 3em 30% 1em 30%;
     box-sizing: border-box;
     background-color: @baseColor;
 
@@ -75,7 +75,7 @@ body {
         left: 0;
         top: 0;
         margin: 0;
-        padding: 0.2em 50% 0.2em 50%;
+        padding: 0.2em 75% 0.2em 75%;
         box-sizing: border-box;
         background-color: @headerBackground;
         color: @headerColor;
@@ -87,7 +87,7 @@ body {
         position: absolute;
         display: block;
         top: 0;
-        right: 25%;
+        right: 30%;
 
         * {
             display: inline-block;
@@ -165,10 +165,10 @@ body {
                     transition: color 0.2s;
 
                     &[rel=next] {
-                        left: 75%;
+                        left: 70%;
                     }
                     &[rel=prev] {
-                        right: 75%;
+                        right: 70%;
                     }
                     
                     &:hover {
@@ -183,6 +183,9 @@ body {
         }
 
         & > section.text {
+            text-align: justify;
+            font-size: 1em;
+
             h2, h3, h4, h5, h6 {
                 & > a {
                     color: @textColor;
@@ -201,6 +204,7 @@ body {
         & > section.comment {
             margin-bottom: 1em;
             padding: 0.5em 10% 0.5em 10%;
+            text-align: justify;
 
             & > header {
                 margin-bottom: 0.5em;

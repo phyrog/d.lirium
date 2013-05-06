@@ -50,7 +50,7 @@ body {
   display: block;
   width: 100%;
   margin: 0;
-  padding: 3em 25% 1em 25%;
+  padding: 3em 30% 1em 30%;
   box-sizing: border-box;
   background-color: #efefef;
 }
@@ -61,7 +61,7 @@ body > h1 {
   left: 0;
   top: 0;
   margin: 0;
-  padding: 0.2em 50% 0.2em 50%;
+  padding: 0.2em 75% 0.2em 75%;
   box-sizing: border-box;
   background-color: #565656;
   color: #d6d6d6;
@@ -71,7 +71,7 @@ body > nav {
   position: absolute;
   display: block;
   top: 0;
-  right: 25%;
+  right: 30%;
 }
 body > nav * {
   display: inline-block;
@@ -134,16 +134,20 @@ body > article > header nav > a {
   transition: color 0.2s;
 }
 body > article > header nav > a[rel=next] {
-  left: 75%;
+  left: 70%;
 }
 body > article > header nav > a[rel=prev] {
-  right: 75%;
+  right: 70%;
 }
 body > article > header nav > a:hover {
   color: #b2b2b2;
 }
 body > article > header > h1 {
   font-family: "URW Gothic L";
+}
+body > article > section.text {
+  text-align: justify;
+  font-size: 1em;
 }
 body > article > section.text h2 > a,
 body > article > section.text h3 > a,
@@ -162,6 +166,7 @@ body > article > section.text + form {
 body > article > section.comment {
   margin-bottom: 1em;
   padding: 0.5em 10% 0.5em 10%;
+  text-align: justify;
 }
 body > article > section.comment > header {
   margin-bottom: 0.5em;
