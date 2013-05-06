@@ -184,6 +184,34 @@ body {
                 }
             }
         }
+
+        & > section.text + section.comment,
+        & > section.text + form {
+            padding-top: 1em;
+            border-top: 2px dotted @baseColor;
+        }
+
+        & > section.comment {
+            padding: 0.5em;
+        }
+
+        & > form {
+            display: block;
+            padding: 0 20% 0 20%;
+
+            & > textarea,
+            & > input {
+                position: relative;
+                display: block;
+                width: 100%;
+                padding: 0.5em;
+                border: none;
+                resize: none;
+                box-sizing: border-box;
+                background-color: @baseColor;
+                transition: height 0.2s;
+            }
+        }
     }
 
     & > a {

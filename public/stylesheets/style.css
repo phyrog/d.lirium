@@ -150,6 +150,30 @@ body > article > section.text h6 > a {
   font-family: "URW Gothic L";
   text-decoration: none;
 }
+body > article > section.text + section.comment,
+body > article > section.text + form {
+  padding-top: 1em;
+  border-top: 2px dotted #efefef;
+}
+body > article > section.comment {
+  padding: 0.5em;
+}
+body > article > form {
+  display: block;
+  padding: 0 20% 0 20%;
+}
+body > article > form > textarea,
+body > article > form > input {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  background-color: #efefef;
+  transition: height 0.2s;
+}
 body > a {
   display: inline-block;
   padding: 0.5em;
