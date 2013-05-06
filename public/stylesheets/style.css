@@ -150,7 +150,7 @@ body > article > header > aside > ul > li > a:hover {
   color: #989898;
 }
 body > article > header nav > a {
-  position: absolute;
+  position: fixed;
   font-size: 4em;
   color: #e5e5e5;
   text-decoration: none;
@@ -169,6 +169,7 @@ body > article > header nav > a:hover {
 }
 body > article > header > h1 {
   font-family: "URW Gothic L";
+  font-size: 1.75em;
 }
 body > article > section.text {
   text-align: justify;
