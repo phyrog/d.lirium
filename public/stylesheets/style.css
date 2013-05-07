@@ -37,6 +37,18 @@ html
         a
         a
 */
+@font-face {
+  font-family: "URW Gothic L";
+  src: url("../fonts/URWGothicL-Book");
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../fonts/SourceCodePro-Regular.otf");
+}
+@font-face {
+  font-family: "Sans";
+  src: url("../fonts/OpenSans-Regular.ttf");
+}
 html {
   min-height: 100%;
   width: 100%;
@@ -49,13 +61,15 @@ html {
   font-size: 16px;
 }
 a[rel=author] {
-  color: #ff8700;
+  color: #565656;
   font-weight: bold;
-  font-style: italic;
+  font-family: "URW Gothic L";
+  text-decoration: none;
 }
 a[rel=author]:before {
-  color: #898989;
-  content: "#";
+  color: #eb7c00;
+  font-family: "Source Code Pro";
+  content: ">";
 }
 body {
   position: absolute;
@@ -69,6 +83,7 @@ body {
   text-align: center;
   overflow-x: hidden;
   border-top: 4px solid #ff8700;
+  font-family: "Sans";
 }
 body > * {
   margin-top: -3em;
@@ -129,10 +144,6 @@ body > article > header > aside {
   padding: 0;
   font-family: "Source Code Pro";
 }
-body > article > header > aside > a[rel=author] {
-  color: #eb7c00;
-  text-decoration: none;
-}
 body > article > header > aside > ul {
   display: inline-block;
   margin: 0;
@@ -177,6 +188,15 @@ body > article > header > h1 {
   font-family: "URW Gothic L";
   font-size: 1.75em;
 }
+body > article > header > h1 > a {
+  color: #565656;
+  text-decoration: none;
+}
+body > article > header > h1 > a:before {
+  font-family: "Source Code Pro";
+  color: #eb7c00;
+  content: ">";
+}
 body > article > section.text {
   text-align: justify;
   font-size: 1em;
@@ -205,7 +225,7 @@ body > article > section.comment > header {
   padding: 0.5em;
   font-family: "Source Code Pro";
   text-transform: lowercase;
-  background-color: #efefef;
+  background-color: #d6d6d6;
   color: #565656;
 }
 body > article > section.comment > header a {
@@ -213,9 +233,6 @@ body > article > section.comment > header a {
   text-decoration: none;
   color: #565656;
   transition: color 0.2s;
-}
-body > article > section.comment > header a[rel=author] {
-  color: #ff8700;
 }
 body > article > section.comment > header a.goto {
   position: absolute;
@@ -247,6 +264,10 @@ body > article > form > input {
   box-sizing: border-box;
   background-color: #efefef;
   transition: height 0.2s;
+}
+body > article > form > textarea[type=submit],
+body > article > form > input[type=submit] {
+  cursor: pointer;
 }
 body > a {
   display: inline-block;

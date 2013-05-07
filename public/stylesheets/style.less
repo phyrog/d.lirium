@@ -49,6 +49,22 @@ html
 @monospaceFont: "Source Code Pro";
 @headingFont: "URW Gothic L";
 
+@font-face {
+    font-family: "URW Gothic L";
+    src: url("../fonts/URWGothicL-Book");
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    src: url("../fonts/SourceCodePro-Regular.otf");
+}
+
+@font-face {
+    font-family: "Sans";
+    src: url("../fonts/OpenSans-Regular.ttf");
+}
+
+
 html {
     min-height: 100%;
     width: 100%;
@@ -60,13 +76,15 @@ html {
 }
 
 a[rel=author] {
-    color: @orangeColor;
+    color: @textColor;
     font-weight: bold;
-    font-style: italic;
+    font-family: @headingFont;
+    text-decoration: none;
     
     &:before {
-        color: lighten(@textColor, 20%);
-        content: "#";
+        color: @darkOrangeColor;
+        font-family: @monospaceFont;
+        content: ">";
     }
 }
 
@@ -82,6 +100,7 @@ body {
     text-align: center;
     overflow-x: hidden;
     border-top: 4px solid @orangeColor;
+    font-family: "Sans";
 
     & > * {
         margin-top: -3em;
@@ -152,11 +171,6 @@ body {
                 padding: 0;
                 font-family: @monospaceFont;
 
-                & > a[rel=author] {
-                    color: @darkOrangeColor;
-                    text-decoration: none;
-                }
-
                 & > ul {
                     display: inline-block;
                     margin: 0;
@@ -211,6 +225,17 @@ body {
             & > h1 {
                 font-family: @headingFont;
                 font-size: 1.75em;
+
+                & > a {
+                    color: @textColor;
+                    text-decoration: none;
+
+                    &:before {
+                        font-family: @monospaceFont;
+                        color: @darkOrangeColor;
+                        content: ">";
+                    }
+                }
             }
         }
 
@@ -243,7 +268,7 @@ body {
                 padding: 0.5em;
                 font-family: @monospaceFont;
                 text-transform: lowercase;
-                background-color: @baseColor;
+                background-color: @headerColor;
                 color: @textColor;
 
                 a {
@@ -251,10 +276,6 @@ body {
                     text-decoration: none;
                     color: @textColor;
                     transition: color 0.2s;
-
-                    &[rel=author] {
-                        color: @orangeColor;
-                    }
 
                     &.goto {
                         position: absolute;
@@ -291,6 +312,10 @@ body {
                 box-sizing: border-box;
                 background-color: @baseColor;
                 transition: height 0.2s;
+
+                &[type=submit] {
+                    cursor: pointer;
+                }
             }
         }
     }
