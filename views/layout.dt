@@ -12,25 +12,15 @@ html
             ul
                 li
                     a.active(href="/") Home
-                li
-                    a(href="#{blogPrefix}/tag/code") Code
-                    ul
-                        li
-                            a(href="#{blogPrefix}/tag/c++") C++
-                        li
-                            a(href="#{blogPrefix}/tag/d") D
-                        li
-                            a(href="#{blogPrefix}/tag/java") Java
-                li
-                    a(href="#{blogPrefix}/tag/life") Life
+                - import dlirium.db;
+                - foreach(tag; getMostTags())
+                    li
+                        a(href="#{blogPrefix}/tag/#{tag}")= tag
                 li
                     a(href="/aboutme") About me
         block content
-        a(href="http://vibed.org/templates/diet") Diet
-        a(href="http://lesscss.org") LESS
         a(href="http://vibed.org") vibe.d
         a(href="http://mongodb.org") MongoDB
-        a(href="http://redis.io") redis
         a(href="#") Impressum
         - if(req.session !is null)
             a(href="/logout?ref=#{req.path}") Logout (#{req.session["name"]})

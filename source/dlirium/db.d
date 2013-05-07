@@ -135,6 +135,19 @@ Bson aggregate(string collection, Bson[] pipeline)
     ].orderedBsonObject(["aggregate", "pipeline"]));
 }
 
+string[] getMostTags(int n = 5)()
+{
+    Bson ret = "articles".aggregate([
+        Bson(["$project": Bson(["tags": Bson(1)])]),
+        Bson(["$unwind": Bson("$tags")]),
+        Bson(["$group": Bson(["_id": Bson("$tags"), "num": Bson(["$sum": Bson(1)])])]),
+        Bson(["$sort": Bson(["num": Bson(-1)])]),
+        Bson(["$limit": Bson(n)])
+    ]);
+
+    return (cast(Bson[])ret["result"]).map!(a => cast(string)a["_id"])().array();
+}
+
 public Comment[] getCommentsByUser(string name)
 {
     Bson ret = "articles".aggregate([
