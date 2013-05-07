@@ -32,6 +32,8 @@ shared static this()
           .get("/logout", &routes.user.checkLogin)
           .get("/logout", &routes.user.logout)
 
+          .get("/user/:user", &routes.user.show)
+
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag", &routes.blog.tag)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug", &routes.blog.show)
           .get(dlirium.conf.blogPrefix ~ "/tag/:tag/:slug/next", &routes.blog.next)

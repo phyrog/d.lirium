@@ -77,3 +77,11 @@ void register(string token, string provider, Json info)
 {
     addUser(token, provider, info["login"].get!string, info["email"].get!string);
 }
+
+void show(HttpServerRequest req, HttpServerResponse res)
+{
+    string name = req.params.get("user", "");
+    Comment[] comments = getCommentsByUser(name);
+    logInfo(to!string(comments.length));
+    res.renderCompat!("user.dt", HttpServerRequest, "req", Comment[], "comments")(req, comments);
+}

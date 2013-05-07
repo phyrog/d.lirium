@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    article
+        header
+            h1 #{req.params.get("user", "No user speciefied")}
+        section.text
+        - foreach(comment; comments)
+            section.comment
+                header
+                    a(rel="author")= comment.author
+                    a.goto(href="#{dlirium.conf.blogPrefix}/#{comment.articleSlug}") &lt;
+                    - string comDate = comment.date.day ~ "." ~ comment.date.month ~ "." ~ comment.date.year;
+                    time= comDate
+                | #{comment._text}
+    

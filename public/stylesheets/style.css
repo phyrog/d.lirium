@@ -217,6 +217,13 @@ body > article > section.comment > header a {
 body > article > section.comment > header a[rel=author] {
   color: #ff8700;
 }
+body > article > section.comment > header a.goto {
+  position: absolute;
+  left: 2.5em;
+  margin-top: -0.5em;
+  font-size: 2em;
+  color: #ff8700;
+}
 body > article > section.comment > header time {
   position: absolute;
   display: inline-block;
