@@ -3,13 +3,32 @@ module dlirium.data;
 import vibe.data.bson;
 import dlirium.textfilter.markdown;
 import std.algorithm : map;
-import std.array : array, Appender;
+import std.array : array, Appender, appender;
 import std.conv : to;
 import dlirium.conf;
 
 import vibe.core.log;
 
 public import std.datetime;
+
+Bson orderedBsonObject(Bson[string] value, string[] key)
+{
+    auto app = appender!bdata_t();
+    foreach(k; key)
+    {
+        auto v = value[k];
+        app.put(cast(ubyte)v.type);
+        app.put(cast(bdata_t)k);
+        app.put(cast(ubyte)0);
+        app.put(v.data);
+    }
+
+    auto dapp = appender!bdata_t();
+    dapp.put(toBsonData(cast(int)app.data.length+5));
+    dapp.put(app.data);
+    dapp.put(cast(ubyte)0);
+    return Bson(Bson.Type.Object, dapp.data);
+}
 
 struct OAuth2Provider
 {
@@ -39,6 +58,8 @@ struct Date
     @property public string year() { return ("0000" ~ to!string(this.date.year))[$-4..$]; }
     @property public string month() { return ("00" ~ to!string(cast(int)this.date.month))[$-2..$]; }
     @property public string day() { return ("00" ~ to!string(this.date.day))[$-2..$]; }
+
+    public static Date fromString(string date) { return Date(SysTime.fromISOExtString(date)); }
 }
 
 struct Article
@@ -80,7 +101,7 @@ struct Article
         art.published = cast(bool)bson["published"];
         art.commentable = cast(bool)bson["commentable"];
         art.author = cast(string)bson["author"];
-        art.date = Date(SysTime.fromISOExtString(cast(string)bson["date"]));
+        art.date = Date.fromString(cast(string)bson["date"]);
         art.title = cast(string)bson["title"];
         art.slug = cast(string)bson["slug"];
         art.tags = (cast(Bson[])bson["tags"]).map!(a => cast(string)a)().array();
@@ -97,6 +118,7 @@ struct Comment
     string       author;
     Date         date;
     string       _text;
+    string       articleSlug;
 
     @property public string text() { return this._text.filterMarkdown(); }
 
@@ -111,13 +133,14 @@ struct Comment
         return Bson(vals);
     }
 
-    public static Comment fromBson(Bson bson)
+    public static Comment fromBson(Bson bson, string articleSlug = "")
     {
         Comment com;
         com.id = cast(BsonObjectID)bson["_id"];
         com.author = cast(string)bson["author"];
         com.date = Date(SysTime.fromISOExtString(cast(string)bson["date"]));
         com._text = cast(string)bson["text"];
+        com.articleSlug = articleSlug;
 
         return com;
     }

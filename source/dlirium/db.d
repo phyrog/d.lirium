@@ -8,6 +8,7 @@ import vibe.data.json;
 import dlirium.data;
 import std.algorithm;
 import std.array;
+import std.conv;
 
 private MongoClient     db_connection;
 private MongoCollection col_articles;
@@ -124,4 +125,27 @@ public void addUser(string token, string provider, string username, string email
 {
     Bson[string] bson = ["provider": Bson(provider), "name": Bson(username), "email": Bson(email), "token": Bson(token)];
     col_users.insert(Bson(bson));
+}
+
+Bson aggregate(string collection, Bson[] pipeline)
+{
+    return db_connection.getCollection("dlirium.$cmd").findOne([
+        "aggregate": Bson(collection), 
+        "pipeline": Bson(pipeline)
+    ].orderedBsonObject(["aggregate", "pipeline"]));
+}
+
+public Comment[] getCommentsByUser(string name)
+{
+    Bson ret = "articles".aggregate([
+            Bson(["$match": Bson(["comments.author": Bson(name)])]),
+            Bson(["$project": Bson(["comments": Bson(1), "slug": Bson(1)])]), 
+            Bson(["$unwind": Bson("$comments")]), 
+            Bson(["$sort": Bson(["comments._id": Bson(-1)])]),
+            Bson(["$limit": Bson(5)])
+        ]);
+
+    Comment[] c = (cast(Bson[])ret["result"]).map!(a => Comment.fromBson(a["comments"], cast(string)a["slug"]))().array();
+
+    return c;
 }
