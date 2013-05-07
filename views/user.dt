@@ -3,7 +3,11 @@ extends layout
 block content
     article
         header
-            h1 #{req.params.get("user", "No user speciefied")}
+            - if(req.params.get("user", "aaaaaa")[$-6..$] == "github")
+                h1
+                    a(href="https://github.com/#{req.params[\"user\"][0..$-7]}") #{req.params["user"]}
+            - else
+                h1 #{req.params.get("user", "No user speciefied")}
         section.text
         - foreach(comment; comments)
             section.comment

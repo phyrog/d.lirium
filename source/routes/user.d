@@ -18,7 +18,7 @@ void auth(HttpServerRequest req, HttpServerResponse res)
     Json info = authProviders[req.params["provider"]].requestUserInfo(token);
     auto session = res.startSession();
     session["token"] = token;
-    session["name"] = info["login"].get!string;
+    session["name"] = info["login"].get!string ~ "@" ~ req.params["provider"];
     if("ref" in req.query)
         res.redirect(req.query["ref"]);
     else
