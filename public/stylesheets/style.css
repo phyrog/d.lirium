@@ -67,6 +67,7 @@ a[rel=author] {
   text-decoration: none;
 }
 a[rel=author]:before {
+  padding-right: 0.1em;
   color: #eb7c00;
   font-family: "Source Code Pro";
   content: ">";
