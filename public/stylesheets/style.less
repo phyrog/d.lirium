@@ -44,6 +44,8 @@ html
 @articleBackground: darken(@baseColor, 4%);
 @navLinkColor: @headerColor;
 @textColor: @headerBackground;
+@orangeColor: #FF8700;
+@darkOrangeColor: darken(@orangeColor, 4%);
 @monospaceFont: "Source Code Pro";
 @headingFont: "URW Gothic L";
 
@@ -58,6 +60,10 @@ html {
 }
 
 a[rel=author] {
+    color: @orangeColor;
+    font-weight: bold;
+    font-style: italic;
+    
     &:before {
         color: lighten(@textColor, 20%);
         content: "#";
@@ -68,13 +74,14 @@ body {
     position: absolute;
     display: block;
     width: 100%;
-    top: 6em;
+    top: 3em;
     margin: 0;
     padding: 3em 0 1em 0;
     box-sizing: border-box;
     background-color: @baseColor;
     text-align: center;
     overflow-x: hidden;
+    border-top: 4px solid @orangeColor;
 
     & > * {
         margin-top: -3em;
@@ -146,7 +153,7 @@ body {
                 font-family: @monospaceFont;
 
                 & > a[rel=author] {
-                    color: @textColor;
+                    color: @darkOrangeColor;
                     text-decoration: none;
                 }
 
@@ -156,7 +163,6 @@ body {
                     padding: 1em;
 
                     & > li {
-                        
                         display: inline-block;
 
                         & > a {
@@ -234,26 +240,29 @@ body {
 
             & > header {
                 margin-bottom: 0.5em;
+                padding: 0.5em;
                 font-family: @monospaceFont;
                 text-transform: lowercase;
+                background-color: @baseColor;
+                color: @textColor;
 
                 a {
                     padding: 0.2em;
                     text-decoration: none;
-                    color: lighten(@textColor, 25%);
+                    color: @textColor;
                     transition: color 0.2s;
 
-                    &:hover,
                     &[rel=author] {
-                        color: @textColor;
+                        color: @orangeColor;
                     }
                 }
 
                 time {
                     position: absolute;
                     display: inline-block;
-                    right: 6em;
-                    padding: 0.2em;
+                    right: 7em;
+                    margin-top: -0.5em;
+                    padding: 0.5em;
                     letter-spacing: 0.1em;
                 }
             }
@@ -261,7 +270,7 @@ body {
 
         & > form {
             display: block;
-            padding: 0 20% 0 20%;
+            padding: 0 5em 0 5em;
 
             & > textarea,
             & > input {
