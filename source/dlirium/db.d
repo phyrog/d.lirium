@@ -138,9 +138,9 @@ Bson aggregate(string collection, Bson[] pipeline)
 public Comment[] getCommentsByUser(string name)
 {
     Bson ret = "articles".aggregate([
-            Bson(["$match": Bson(["comments.author": Bson(name)])]),
             Bson(["$project": Bson(["comments": Bson(1), "slug": Bson(1)])]), 
             Bson(["$unwind": Bson("$comments")]), 
+            Bson(["$match": Bson(["comments.author": Bson(name)])]),
             Bson(["$sort": Bson(["comments._id": Bson(-1)])]),
             Bson(["$limit": Bson(5)])
         ]);
